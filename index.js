@@ -1,16 +1,18 @@
 const express = require('express');
-const app = express();
+const app     = express();
 
-const mongoose = require('mongoose');
+const mongoose   = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.plugin(require('./lib/globalToJSON'));
 mongoose.plugin(require('mongoose-unique-validator'));
 
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+const morgan               = require('morgan');
+const bodyParser           = require('body-parser');
+
+const router               = require('./config/routes');
+const errorHandler         = require('./lib/errorHandler');
+const customResponses      = require('./lib/customResponses');
 const { port, dbURI, env } = require('./config/environment');
-const customResponses = require('./lib/customResponses');
-const errorHandler = require('./lib/errorHandler');
 
 mongoose.connect(dbURI, { useMongoClient: true });
 
@@ -19,7 +21,7 @@ app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
 
 app.use(customResponses);
-
+app.use('/api', router);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.use(errorHandler);
