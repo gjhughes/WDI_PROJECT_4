@@ -8,9 +8,17 @@ function usersIndex(req, res, next) {
     .catch(next);
 }
 
+function usersCreate(req, res, next) {
+  User
+    .create(req.body)
+    .then(watch => res.status(201).json(watch))
+    .catch(next);
+}
+
 function usersShow(req, res, next) {
   User
-    .fetchByIdWithPlans(req, res)
+    .findById(req.params.id)
+    .exec()
     .then(user => res.status(200).json(user))
     .catch(next);
 }
@@ -33,6 +41,7 @@ function usersDelete(req, res, next) {
 
 module.exports = {
   index: usersIndex,
+  create: usersCreate,
   show: usersShow,
   update: usersUpdate,
   delete: usersDelete
