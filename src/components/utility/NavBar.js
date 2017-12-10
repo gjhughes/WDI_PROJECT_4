@@ -23,6 +23,7 @@ const NavBar = ({ history }) => {
           <Button waves="light" className="loginButton">Login</Button>
         </NavItem>}
       {' '}
+      { Auth.isAuthenticated() && <NavItem href="/groups" className="navItem">Groups</NavItem>}
       { Auth.isAuthenticated() && <NavItem href="#" className="navItem" onClick={logout}>Logout</NavItem>}
     </Navbar>
   );

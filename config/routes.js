@@ -2,9 +2,9 @@ const express      = require('express');
 const router       = express.Router();
 
 const auth         = require('../controllers/auth');
+// const proxies      = require('../controllers/proxies');
 const users        = require('../controllers/users');
-const stocks       = require('../controllers/stocks');
-const transactions = require('../controllers/transactions');
+const groups       = require('../controllers/groups');
 
 router.route('/register')
   .post(auth.register);
@@ -13,29 +13,27 @@ router.route('/login')
   .post(auth.login);
 
 router.route('/users')
-  .get(users.index);
+  .get(users.index)
+  .post(users.create);
 
-router.route('/stocks')
-  .get(stocks.index)
-  .post(stocks.create);
-
-router.route('/strock/:id')
-  .get(stocks.show)
-  .put(stocks.update)
-  .delete(stocks.delete);
-
-router.route('/transactions')
-  .get(transactions.index)
-  .post(transactions.create);
+router.route('/groups')
+  .get(groups.index)
+  .post(groups.create);
 
 router.route('/users/:id')
   .get(users.show)
   .put(users.update)
   .delete(users.delete);
 
-router.route('/transactions/:id')
-  .get(transactions.show)
-  .put(transactions.update)
-  .delete(transactions.delete);
+router.route('/groups/:id')
+  .get(groups.show)
+  .put(groups.update)
+  .delete(groups.delete);
+
+router.route('/groups/:id/moments')
+  .post(groups.momentCreate);
+
+router.route('/groups/:id/moments/:momentId')
+  .delete(groups.momentDelete);
 
 module.exports = router;

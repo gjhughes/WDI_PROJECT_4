@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    accountBalance: { type: Number, required: true, default: 1000 }
+    image: { type: String, required: false },
+    currentScore: { type: Number, required: true, default: 0 }
   }
 );
 

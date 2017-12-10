@@ -1,20 +1,29 @@
 import React     from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import UsersShow from '../users/UsersShow';
 
-import TransactionsIndex from '../transactions/TransactionsIndex';
+import GroupsIndex from '../groups/GroupsIndex';
+import GroupsShow from '../groups/GroupsShow';
+import GroupsNew from '../groups/GroupsNew';
+
+import MomentsNew from '../moments/MomentsNew';
+import MomentsShow from '../moments/MomentsShow';
 
 const Routes = () => {
   return(
-    <div>
+    <Switch>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/users/:id" component={UsersShow} />
-      <Route path="/transactions" component={TransactionsIndex} />
-    </div>
+      <Route path="/groups/:id/moments/new" component={MomentsNew} />
+      <Route path="/groups/:id/moments/:id" component={MomentsShow} />
+      <Route path="/groups/new" component={GroupsNew} />
+      <Route path="/groups/:id" component={GroupsShow} />
+      <Route path="/groups" component={GroupsIndex} />
+    </Switch>
 
   );
 };

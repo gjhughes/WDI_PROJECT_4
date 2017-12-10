@@ -14,7 +14,6 @@ function login(req, res, next) {
     .findOne({ email: req.body.email })
     .then((user) => {
       if(!user || !user.validatePassword(req.body.password)) return res.status(401).json({ message: 'You\'re a dick head' });
-
       const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1hr' });
       return res.json({ message: `Welcome back ${user.firstName}`, token });
     })

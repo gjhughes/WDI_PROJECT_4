@@ -8,7 +8,7 @@ class Login extends React.Component {
   state = {
     user: {
       email: '',
-      passowrd: ''
+      password: ''
     }
   }
 
@@ -24,7 +24,7 @@ class Login extends React.Component {
       .post('/api/login', this.state.user)
       .then(res => {
         Auth.setToken(res.data.token);
-        this.props.history.push('/');
+        this.props.history.push('/groups');
       });
   }
 

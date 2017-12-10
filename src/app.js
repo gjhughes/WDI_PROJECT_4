@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import './scss/style.scss';
+import 'react-select/dist/react-select.css';
 
 import Routes from './components/utility/Routes';
 import NavBar from './components/utility/NavBar';
