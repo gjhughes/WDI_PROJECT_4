@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from '../auth/Login';
 import Register from '../auth/Register';
-import UsersShow from '../users/UsersShow';
 
 import GroupsIndex from '../groups/GroupsIndex';
 import GroupsShow from '../groups/GroupsShow';
@@ -17,14 +16,12 @@ const Routes = () => {
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route path="/users/:id" component={UsersShow} />
       <Route path="/groups/:id/moments/new" component={MomentsNew} />
       <Route path="/groups/:id/moments/:id" component={MomentsShow} />
       <Route path="/groups/new" component={GroupsNew} />
       <Route path="/groups/:id" component={GroupsShow} />
       <Route path="/groups" component={GroupsIndex} />
     </Switch>
-
   );
 };
 

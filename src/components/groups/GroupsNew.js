@@ -17,8 +17,7 @@ class GroupsNew extends React.Component{
 
   handleChange = ({ target: { name, value }}) => {
     const userId = Auth.getPayload();
-    const group = Object.assign({}, this.state.group, { [name]: value }, { createdBy: userId.userId });
-    console.log(userId);
+    const group = Object.assign({}, this.state.group, { [name]: value }, { createdBy: userId.userId }, );
     this.setState({ group });
   }
 
@@ -29,7 +28,7 @@ class GroupsNew extends React.Component{
       .post('/api/groups', this.state.group, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
       })
-      .then(() => this.props.history.push('/'))
+      .then(() => this.props.history.push('/groups'))
       .catch(err => console.log(err));
   }
 

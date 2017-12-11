@@ -7,19 +7,16 @@ const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
       <input
         name="endTime"
         label="End Date"
-        type="text"
+        type="datetime-local"
         value={newMoment.endTime}
-        onChange={handleChange}
-
-      >
+        onChange={handleChange}>
       </input>
       <input
         name="lastBetTime"
         label="Last Bet"
-        type="text"
+        type="datetime-local"
         onChange={handleChange}
-        value={newMoment.lastBetTime}
-      >
+        value={newMoment.lastBetTime}>
       </input>
       <button>Create</button>
     </form>

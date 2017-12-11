@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { Row, Col, Card, Chip } from 'react-materialize';
+import { Row, Col, Card, Chip, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 class GroupsIndex extends React.Component {
@@ -19,6 +19,11 @@ class GroupsIndex extends React.Component {
     return(
       <main className="container">
         <h1>Groups Index</h1>
+        <div className='container'>
+          <Link to="groups/new">
+            <Button waves="light">Create Group</Button>
+          </Link>
+        </div>
         <Row>
           {this.state.groups.map(group =>
             <Col key={group.id}>

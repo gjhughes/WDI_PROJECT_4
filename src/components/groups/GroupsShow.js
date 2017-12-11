@@ -20,6 +20,7 @@ class GroupsShow extends React.Component {
   }
 
   render() {
+    console.log(this.state.moments);
     return(
       <main>
         <div className='container'>
@@ -39,6 +40,9 @@ class GroupsShow extends React.Component {
                   textClassName="white-text"
                   title={moment.endTime}>
                   <h3>{moment.id}</h3>
+                  {moment.bets.map(bet =>
+                    <p key={bet.id}>{bet.user.firstName}: <span> </span>{bet.prediction} </p>
+                  )}
                   <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>Show</Link>
                 </Card>
               </Col>

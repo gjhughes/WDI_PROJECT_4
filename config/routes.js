@@ -33,7 +33,8 @@ router.route('/groups/:id')
 router.route('/groups/:id/moments')
   .post(groups.momentCreate);
 
-router.route('/groups/:id/moments/:momentId')
+router.route('/groups/:id/moments/:id')
+  .get(groups.momentShow)
   .delete(groups.momentDelete);
 
 module.exports = router;
