@@ -10,14 +10,16 @@ import GroupsNew from '../groups/GroupsNew';
 
 import MomentsNew from '../moments/MomentsNew';
 import MomentsShow from '../moments/MomentsShow';
+import PredictionsNew from '../moments/PredictionsNew';
 
 const Routes = () => {
   return(
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route exact path="/groups/:id/moments/:momentId" component={MomentsShow} />
+      <Route exact path="/groups/:id/moments/:momentId/bet" component={PredictionsNew} />
       <Route path="/groups/:id/moments/new" component={MomentsNew} />
-      <Route path="/groups/:id/moments/:id" component={MomentsShow} />
       <Route path="/groups/new" component={GroupsNew} />
       <Route path="/groups/:id" component={GroupsShow} />
       <Route path="/groups" component={GroupsIndex} />

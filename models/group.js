@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
+const betSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  prediction: { type: Number}
+});
+
 const momentSchema = new mongoose.Schema(
   {
-    endTime: { type: Date, required: true },
-    lastBetTime: { type: Date, required: true },
-    bets: [{
-      user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-      prediction: { type: Number, required: true }
-    }]
+    endTime: { type: Date },
+    lastBetTime: { type: Date },
+    bets: [ betSchema ]
   }
 );
 

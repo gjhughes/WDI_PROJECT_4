@@ -2,9 +2,12 @@ const express      = require('express');
 const router       = express.Router();
 
 const auth         = require('../controllers/auth');
-// const proxies      = require('../controllers/proxies');
 const users        = require('../controllers/users');
 const groups       = require('../controllers/groups');
+const moments      = require('../controllers/moments');
+const bets         = require('../controllers/bets');
+
+const secureRoute  = require('../lib/secureRoute');
 
 router.route('/register')
   .post(auth.register);
@@ -31,10 +34,19 @@ router.route('/groups/:id')
   .delete(groups.delete);
 
 router.route('/groups/:id/moments')
-  .post(groups.momentCreate);
+  .get(moments.index)
+  .post(moments.create);
 
-router.route('/groups/:id/moments/:id')
-  .get(groups.momentShow)
-  .delete(groups.momentDelete);
+router.route('/groups/:id/moments/:momentId')
+  .get(moments.show)
+  .put(secureRoute, moments.update)
+  .delete(moments.delete);
+
+router.route('/groups/:id/moments/:momentId/bets')
+  // .get(bets.index)
+  .put(secureRoute, bets.create);
+
+// router.route('/groups/:id/moments/:momentId/bets/:betId')
+//   // .delete(bets.delete);
 
 module.exports = router;

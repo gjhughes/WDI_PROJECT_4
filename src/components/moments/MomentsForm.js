@@ -18,6 +18,7 @@ const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
         onChange={handleChange}
         value={newMoment.lastBetTime}>
       </input>
+      
       <button>Create</button>
     </form>
   );

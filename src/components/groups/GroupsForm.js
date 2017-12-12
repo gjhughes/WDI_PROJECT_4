@@ -1,9 +1,10 @@
 import React from 'react';
 import { Row, Input, Button, Icon } from 'react-materialize';
 
-const GroupsForm = ({ handleSubmit, handleChange, group }) => {
+
+const GroupsForm = ({ handleSubmit, handleChange, handleSelectChange, group, users }) => {
   return(
-    <div className="container">
+    <div className='container'>
       <form onSubmit={handleSubmit}>
         <Row>
           <Input
@@ -19,12 +20,18 @@ const GroupsForm = ({ handleSubmit, handleChange, group }) => {
         <Row>
           <Input
             s={12}
-            type="text"
             name="members"
-            onChange={handleChange}
-            value={group.members}
+            onChange={handleSelectChange}
+            // value={group.members}
+            type="select"
             label="Add Members">
-            <Icon>group</Icon>
+            {users.map(user =>
+              <option
+                data-value={user.id}
+                key={user.id}>
+                {user.firstName}{' '}{user.lastName}
+              </option>
+            )}
           </Input>
         </Row>
         <Row>
@@ -32,6 +39,10 @@ const GroupsForm = ({ handleSubmit, handleChange, group }) => {
         </Row>
       </form>
     </div>
+
+
+
+
   );
 };
 

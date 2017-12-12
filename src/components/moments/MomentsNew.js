@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Axios from 'axios';
 
@@ -11,7 +12,7 @@ class MomentsNew extends React.Component{
       lastBetTime: ''
     }
   }
-  //
+
   // componentWillMount() {
   //   Axios
   //     .get('https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=BTC&market=CNY&apikey=XTWGBR0H1M1TYI7R')
@@ -27,11 +28,9 @@ class MomentsNew extends React.Component{
   componentWillMount() {
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
-      // .then(res => this.setState(res.data.moments))
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
   }
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +46,6 @@ class MomentsNew extends React.Component{
     const newMoment = Object.assign({}, this.state.newMoment, { [name]: value });
     this.setState({ newMoment });
   }
-
 
   render() {
     return(
