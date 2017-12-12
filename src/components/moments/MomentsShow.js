@@ -18,25 +18,10 @@ class MomentsShow extends React.Component{
       })
       .catch(err => console.log(err));
   }
-  //
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //
-  //   Axios
-  //     .put(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bets`, this.state.newBet, {
-  //       headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
-  //     })
-  //     .then(() => this.props.history.push(`/groups/${this.props.match.params.id}/moments`))
-  //     .catch(err => console.log(err));
-  // }
-  //
-  // handleChange = ({ target: { name, value }}) => {
-  //   const newBet = Object.assign({}, this.state.newBet, { [name]: value });
-  //   this.setState({ newBet });
-  //   console.log(newBet);
-  // }
 
   render() {
+    const endPrice = this.state.moment.endPrice;
+    const roundedPrice = Math.round((endPrice + 0.00001) * 100) / 100;
     return(
       <dvi className='container'>
         <div className='container'>
@@ -47,6 +32,7 @@ class MomentsShow extends React.Component{
           <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
             <Button waves="light">Make Prediction</Button>
           </Link>
+          <h4>End price: {roundedPrice} </h4>
         </div>
       </dvi>
     );

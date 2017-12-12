@@ -34,7 +34,6 @@ router.route('/groups/:id')
   .delete(groups.delete);
 
 router.route('/groups/:id/moments')
-  .get(moments.index)
   .post(moments.create);
 
 router.route('/groups/:id/moments/:momentId')
@@ -43,10 +42,6 @@ router.route('/groups/:id/moments/:momentId')
   .delete(moments.delete);
 
 router.route('/groups/:id/moments/:momentId/bets')
-  // .get(bets.index)
   .put(secureRoute, bets.create);
-
-// router.route('/groups/:id/moments/:momentId/bets/:betId')
-//   // .delete(bets.delete);
 
 module.exports = router;

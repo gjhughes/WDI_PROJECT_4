@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const bitcoinSchema = new mongoose.Schema(
   {
-    createdAt: { type: Date, required: true },
-    value: { type: Number, required: true }
+    time: { type: Date, required: true },
+    price: { type: Number, required: true }
   }
 );
 

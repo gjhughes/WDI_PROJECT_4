@@ -31,7 +31,7 @@ class PredictionsNew extends React.Component{
       .put(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bets`, this.state.newBet, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
       })
-      .then(() => this.props.history.push(`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}`))
+      .then(() => this.props.history.push(`/groups/${this.props.match.params.id}`))
       .catch(err => console.log(err));
   }
 

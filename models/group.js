@@ -9,6 +9,7 @@ const momentSchema = new mongoose.Schema(
   {
     endTime: { type: Date },
     lastBetTime: { type: Date },
+    endPrice: { type: Number },
     bets: [ betSchema ]
   }
 );
