@@ -24,7 +24,6 @@ class GroupsNew extends React.Component{
         const members = [currentUser];
         const group = Object.assign({}, this.state.group, { createdBy: currentUser, members });
         const otherUsers = res.data.filter(user => user.id !== Auth.getPayload().userId);
-
         this.setState({ users: otherUsers, group });
       })
       .catch(err => console.log(err));
@@ -41,9 +40,6 @@ class GroupsNew extends React.Component{
     const selectedUser = { id: selectedUserId, firstName: selectedName[0], lastName: selectedName[1]};
     const members = this.state.group.members.concat([selectedUser]);
     const group = Object.assign({}, this.state.group, { members });
-
-    // const users =
-
     this.setState({ group });
   }
 

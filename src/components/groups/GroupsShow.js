@@ -4,6 +4,7 @@ import { Row, Col, Card, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 import Price from '../prices/Prices';
+import Leaderboard from '../utility/Leaderboard';
 
 class GroupsShow extends React.Component {
   state = {
@@ -14,7 +15,6 @@ class GroupsShow extends React.Component {
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
       .then(res => {
-        console.log(res.data);
         this.setState({ group: res.data });
       })
       .catch(err => console.log(err));
@@ -66,6 +66,9 @@ class GroupsShow extends React.Component {
               <p>{member.firstName} {member.lastName}</p>
             </div>
           )}
+        </div>
+        <div className='container'>
+          <Leaderboard />
         </div>
       </main>
     );

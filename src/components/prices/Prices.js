@@ -13,12 +13,13 @@ class Price extends React.Component{
         const prices  = Object.entries(res.data['Time Series (Digital Currency Intraday)']);
         const currentPrice = parseFloat(prices[0][1]['1b. price (USD)']);
         const roundedPrice = Math.round((currentPrice + 0.00001) * 100) / 100;
-        this.setState({ currentPrice: roundedPrice });
+        this.setState({ currentPrice: roundedPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') });
       })
       .catch(err => console.log(err));
   }
 
   render() {
+
     return(
       <h1>Bitcoin: ${this.state.currentPrice}</h1>
     );

@@ -39,10 +39,6 @@ const GroupsForm = ({ handleSubmit, handleChange, handleSelectChange, group, use
         </Row>
       </form>
     </div>
-
-
-
-
   );
 };
 

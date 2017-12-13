@@ -21,7 +21,8 @@ class MomentsShow extends React.Component{
 
   render() {
     const endPrice = this.state.moment.endPrice;
-    const roundedPrice = Math.round((endPrice + 0.00001) * 100) / 100;
+    let roundedPrice = Math.round((endPrice + 0.00001) * 100) / 100;
+    roundedPrice = roundedPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     return(
       <dvi className='container'>
         <div className='container'>
@@ -32,7 +33,7 @@ class MomentsShow extends React.Component{
           <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
             <Button waves="light">Make Prediction</Button>
           </Link>
-          <h4>End price: {roundedPrice} </h4>
+          <h4>End price: ${roundedPrice} </h4>
         </div>
       </dvi>
     );

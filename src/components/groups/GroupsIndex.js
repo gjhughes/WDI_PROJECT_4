@@ -11,7 +11,10 @@ class GroupsIndex extends React.Component {
   componentWillMount() {
     Axios
       .get('/api/groups')
-      .then(req => this.setState({ groups: req.data }))
+      .then(req => {
+        console.log(req.data);
+        this.setState({ groups: req.data });
+      })
       .catch(err => console.log(err));
   }
 
@@ -19,7 +22,7 @@ class GroupsIndex extends React.Component {
     return(
       <main className="container">
         <h1>Groups Index</h1>
-        <div className='container'>
+        <div>
           <Link to="groups/new">
             <Button waves="light">Create Group</Button>
           </Link>

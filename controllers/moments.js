@@ -3,9 +3,7 @@ const CronJob = require('cron').CronJob;
 const rp      = require('request-promise');
 
 function createCron(endTime, groupId, momentId) {
-
   return new CronJob(new Date(endTime), function() {
-    // make rp to get current price
     return rp({
       url: 'https://www.alphavantage.co/query',
       qs: {
