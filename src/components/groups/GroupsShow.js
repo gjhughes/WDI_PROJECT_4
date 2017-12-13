@@ -15,6 +15,7 @@ class GroupsShow extends React.Component {
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
       .then(res => {
+        console.log(res.data);
         this.setState({ group: res.data });
       })
       .catch(err => console.log(err));
@@ -59,14 +60,14 @@ class GroupsShow extends React.Component {
           </Row>
         </div>
 
-        <div className="container">
+        {/* <div className="container">
           <h3>Members</h3>
-          { Object.keys(this.state.group).length !== 0 && this.state.group.members.map(member =>
-            <div key={member.id}>
-              <p>{member.firstName} {member.lastName}</p>
+          { Object.keys(this.state.group).length !== 0 && this.state.group.member.user.map(i =>
+            <div key={i.id}>
+              <p>{i.firstName} {i.lastName}</p>
             </div>
           )}
-        </div>
+        </div> */}
         <div className='container'>
           <Leaderboard />
         </div>

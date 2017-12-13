@@ -19,7 +19,10 @@ const groupSchema = new mongoose.Schema(
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
     groupName: { type: String, required: true },
     image: { type: String },
-    members: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+    members: [{
+      user: { type: mongoose.Schema.ObjectId, ref: 'User' },
+      points: { type: Number }
+    }],
     moments: [momentSchema]
   }
 );

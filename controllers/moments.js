@@ -25,7 +25,15 @@ function createCron(endTime, groupId, momentId) {
           .exec()
           .then(group => {
             const moment = group.moments.id(momentId);
+            // update the moment
             moment.endPrice = latestValue;
+
+            // calculate the score for the users
+            moment.bets.sort((a, b) => Math.abs(latestValue - b.prediction) - Math.abs(latestValue - a.prediction))
+              .forEach((bet, i) => {
+                const user = group.members.find(member => member.user.equals(bet.user));
+                user.points += i * 5;
+              });
             return group.save();
           });
       });
@@ -49,22 +57,21 @@ function momentCreate(req, res, next) {
     .catch(next);
 }
 
-function momentUpdate(req, res, next) {
-  console.log(req.body);
-
-  Group
-    .findById(req.params.id)
-    .exec()
-    .then(group => {
-      const moment = group.moments.find(moment => moment.id === req.params.momentId);
-      console.log(moment);
-    })
-    .catch(next);
-}
+// function momentUpdate(req, res, next) {
+//   Group
+//     .findById(req.params.id)
+//     .exec()
+//     .then(group => {
+//       const moment = group.moments.find(moment => moment.id === req.params.momentId);
+//       console.lo
+//     })
+//     .catch(next);
+// }
 
 function momentShow(req, res, next) {
   Group
     .findById(req.params.id)
+    .populate('moments.bets.user')
     .exec()
     .then(group => {
       if(!group) return res.notFound();
@@ -92,6 +99,5 @@ function momentDelete(req, res, next) {
 module.exports = {
   show: momentShow,
   create: momentCreate,
-  update: momentUpdate,
   delete: momentDelete
 };

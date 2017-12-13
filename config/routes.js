@@ -38,7 +38,6 @@ router.route('/groups/:id/moments')
 
 router.route('/groups/:id/moments/:momentId')
   .get(moments.show)
-  .put(secureRoute, moments.update)
   .delete(moments.delete);
 
 router.route('/groups/:id/moments/:momentId/bets')

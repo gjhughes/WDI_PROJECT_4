@@ -3,7 +3,7 @@ const Group = require('../models/group');
 function groupsIndex(req, res, next) {
   Group
     .find()
-    .populate('moments createdBy members')
+    .populate('moments createdBy members members.user')
     .exec()
     .then(groups => res.status(200).json(groups))
     .catch(next);
@@ -19,7 +19,7 @@ function groupsCreate(req, res, next) {
 function groupsShow(req, res, next) {
   Group
     .findById(req.params.id)
-    .populate('members moments moments.bets moments.bets.user')
+    .populate('members.user moments moments.bets moments.bets.user')
     .exec()
     .then(group => res.status(200).json(group))
     .catch(next);
