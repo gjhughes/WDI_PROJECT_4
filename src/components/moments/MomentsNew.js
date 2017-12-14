@@ -8,7 +8,7 @@ class MomentsNew extends React.Component{
     curentPrice: '',
     newMoment: {
       endTime: '',
-      startTime: ''
+      lastBetTime: ''
     }
   }
 

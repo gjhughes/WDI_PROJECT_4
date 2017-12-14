@@ -108,24 +108,20 @@ html, body{
 /***************/
 
 div.box {
-  background-color: #FAFAFA;
+  background-color: #455A64;
 }
 
 div.card {
-  background-color: #CFD8DC;
+  background-color: #FAFAFA;
   border-radius: 5px;
 }
 
 div.card:hover {
-  background-color: #FAFAFA;
-}
-
-.predictionBox {
-  text-align: center;
+  background-color: #CFD8DC;
 }
 
 .timer {
-  width: 700px;
+  width: 700gpx;
   height: 228px;
   background-color: red !important;
 }
@@ -146,4 +142,27 @@ div.card:hover {
 .table td {
   background-color: #FAFAFA;
   border-color: #CDDC39 !important;
+}
+
+/*******************/
+/** Timer Styles **/
+/*****************/
+
+.countdown {
+  color: red;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 24px;
+  background-color: #FAFAFA;
+}
+
+.countdown span {
+  weight: 600;
+  color: #455A64;
+}
+
+.clockHeading {
+  text-align: center;
+  font-size: 24px;
+  color: #FAFAFA;
 }

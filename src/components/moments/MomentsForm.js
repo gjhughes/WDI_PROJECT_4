@@ -15,9 +15,9 @@ const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
             <Input
               medium
               onChange={handleChange}
-              value={newMoment.startTime}
+              value={newMoment.lastBetTime}
               type="datetime-local"
-              name="startTime"
+              name="lastBetTime"
             />
           </Control>
         </Field>

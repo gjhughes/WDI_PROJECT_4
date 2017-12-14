@@ -2,7 +2,9 @@ import React from 'react';
 import Axios from 'axios';
 
 import { Link } from 'react-router-dom';
-import { Box, Button, Card, Media, Table, Level } from 'reactbulma';
+import { Box, Button, Table } from 'reactbulma';
+import Moment from 'react-moment';
+import ReactMomentCountDown from 'react-moment-countdown';
 
 class MomentsShow extends React.Component{
   state = {
@@ -20,12 +22,7 @@ class MomentsShow extends React.Component{
       .catch(err => console.log(err));
   }
 
-
-
   render() {
-    const endPrice = this.state.moment.endPrice;
-    let roundedPrice = Math.round((endPrice + 0.00001) * 100) / 100;
-    roundedPrice = roundedPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     return(
 
       <div className="container">
@@ -38,72 +35,45 @@ class MomentsShow extends React.Component{
           </Link>
         </Box>
 
-        <h1 className="heading">Predictions for this Frame</h1>
-        <Level>
-          <Level.Left>
-            <Level.Item>
-              <Box className="predictions">
-                <Table>
-                  <Table.Head>
-                    <Table.Tr>
-                      <Table.Th>User</Table.Th>
-                      <Table.Th>Prediction</Table.Th>
+        <div className="columns">
+          <div className="column is-one-third">
+            <h1 className="heading">Predictions for this Frame</h1>
+            <Box>
+              <Table>
+                <Table.Head>
+                  <Table.Tr>
+                    <Table.Th>User</Table.Th>
+                    <Table.Th>Prediction</Table.Th>
+                  </Table.Tr>
+                </Table.Head>
+                <Table.Body>
+                  {this.state.bets.map(bet =>
+                    <Table.Tr key={bet.key}>
+                      <Table.Td>{bet.user.firstName}{' '}{bet.user.lastName}</Table.Td>
+                      <Table.Td>${bet.prediction.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</Table.Td>
                     </Table.Tr>
-                  </Table.Head>
-                  <Table.Body>
-                    {this.state.bets.map(bet =>
-                      <Table.Tr key={bet.key}>
-                        <Table.Td>{bet.user.firstName}{' '}{bet.user.lastName}</Table.Td>
-                        <Table.Td>${bet.prediction.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</Table.Td>
-                      </Table.Tr>
-                    )}
-                  </Table.Body>
-                </Table>
-              </Box>
-            </Level.Item>
-          </Level.Left>
-
-          <Level.Right>
-            <Level.Item hasTextCentered>
-              <Box className="timer">
-                <h1>Right</h1>
-              </Box>
-            </Level.Item>
-          </Level.Right>
-
-
-
-        </Level>
-
-
-
+                  )}
+                </Table.Body>
+              </Table>
+            </Box>
+          </div>
+          <div className="column is-two-thirds">
+            <h1 className="heading">Time remaining</h1>
+            <Box className="timeBox">
+              <h1 className="clockHeading">Time Remaining</h1>
+              <div className="countdown">
+                <strong><ReactMomentCountDown
+                  toDate={ this.state.moment.endTime }
+                  className="momentCountdown"
+                /></strong>
+              </div>
+            </Box>
+          </div>
+        </div>
 
       </div>
 
 
-
-
-
-
-      // <div className='container'>
-      //   <div className='container'>
-      //     <h1>{this.state.moment.endTime}</h1>
-      //     <p>Moment Show</p>
-      //   </div>
-      //   <div className='container'>
-      //     <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
-      //       <Button waves="light">Make Prediction</Button>
-      //     </Link>
-      //     <h4>End price: ${roundedPrice} </h4>
-      //   </div>
-      //
-      //   <div className='container'>
-      //     {this.state.bets.map(bet =>
-      //       <p key={bet.id}>{bet.user.firstName} Prediction: {bet.prediction}</p>
-      //     )}
-      //   </div>
-
-      // </div>
     );
   }
 }
