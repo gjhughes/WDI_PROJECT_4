@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Axios from 'axios';
 
@@ -9,7 +8,7 @@ class MomentsNew extends React.Component{
     curentPrice: '',
     newMoment: {
       endTime: '',
-      lastBetTime: ''
+      startTime: ''
     }
   }
 

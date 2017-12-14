@@ -1,65 +1,44 @@
 // import React from 'react';
 //
-// import { Box } from 'reactbulma';
+// import {  } from 'reactbulma';
 //
-// const Leaderboard = () => {
+// const Leaderboard = ({ members }) => {
 //   return(
-//     <Box>
-//       <h1>Leaderboard</h1>
-//       <table>
-//         <thread>
-//           <tr>
-//             <th>Name</th>
-//             <th>Number of moments</th>
-//             <th>Points</th>
-//           </tr>
-//         </thread>
 //
-//         <tbody>
-//           <tr>
-//             <td>hello</td>
-//           </tr>
-//           <tr>
-//             <td>hello2</td>
-//           </tr>
-//         </tbody>
-//       </table>
+//     <div>
+//       {/* <h1>Leaderboard</h1>
+//       {members.map(user =>
+//         <ul key={user.id}>
+//           <li>{user.user.firstName}</li>
+//         </ul> */}
 //
-//     </Box>
+//
+//
+//
+//         <Table key={user.id}>
+//           <Table.Head>
+//             <Table.Tr>
+//               <Table.Th>Position</Table.Th>
+//               <Table.Th>Group Member</Table.Th>
+//               <Table.Th>No. Frames</Table.Th>
+//               <Table.Th>Points</Table.Th>
+//             </Table.Tr>
+//           </Table.Head>
+//           <Table.Body>
+//             <Table.Tr>
+//               <Table.Th>{user.user.firstName}</Table.Th>
+//               <Table.Td></Table.Td>
+//             </Table.Tr>
+//           </Table.Body>
+//         </Table> */
+//       )}
+//
+//
+//     </div>
+//
+//
 //
 //   );
 // };
 //
 // export default Leaderboard;
-// //
-// //
-// // <table>
-// //   <thead>
-// //     <tr>
-// //       <th>One</th>
-// //       <th>Two</th>
-// //     </tr>
-// //   </thead>
-// //   <tbody>
-// //     <tr>
-// //       <td>Three</td>
-// //       <td>Four</td>
-// //     </tr>
-// //     <tr>
-// //       <td>Five</td>
-// //       <td>Six</td>
-// //     </tr>
-// //     <tr>
-// //       <td>Seven</td>
-// //       <td>Eight</td>
-// //     </tr>
-// //     <tr>
-// //       <td>Nine</td>
-// //       <td>Ten</td>
-// //     </tr>
-// //     <tr>
-// //       <td>Eleven</td>
-// //       <td>Twelve</td>
-// //     </tr>
-// //   </tbody>
-// // </table>

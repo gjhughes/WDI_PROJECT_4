@@ -1,44 +1,35 @@
 import React from 'react';
-// import { Row, Input, Button, Icon } from 'react-materialize';
+import { Box, Field, Input, Button } from 'reactBulma';
 
-
-
-const GroupsForm = ({ handleSubmit, handleChange, handleSelectChange, group, users }) => {
+const GroupsForm = ({ handleSubmit, handleChange, group }) => {
   return(
-    <div className='container'>
-      <form onSubmit={handleSubmit}>
-        <Row>
-          <Input
-            s={12}
-            type="text"
-            name="groupName"
-            onChange={handleChange}
-            value={group.groupName}
-            label="Group Name">
-            <Icon>group</Icon>
-          </Input>
-        </Row>
-        <Row>
-          <Input
-            s={12}
-            name="members"
-            onChange={handleSelectChange}
-            // value={group.members}
-            type="select"
-            label="Add Members">
-            {users.map(user =>
-              <option
-                data-value={user.id}
-                key={user.id}>
-                {user.firstName}{' '}{user.lastName}
-              </option>
-            )}
-          </Input>
-        </Row>
-        <Row>
-          <Button>Create Group</Button>
-        </Row>
-      </form>
+    <div className="container">
+      <h1>Create New Group</h1>
+      <Box>
+        <form onSubmit={handleSubmit}>
+          <Field>
+            <Input
+              type="text"
+              name="groupName"
+              onChange={handleChange}
+              value={group.groupName}
+              placeholder="Group Name">
+            </Input>
+            <br />
+            <Input
+              type="text"
+              name="members"
+              onChange={handleChange}
+              value={group.members}
+              placeholder="Add members">
+            </Input>
+            <div className='container'>
+              <br />
+              <Button primary>Create Group</Button>
+            </div>
+          </Field>
+        </form>
+      </Box>
     </div>
   );
 };

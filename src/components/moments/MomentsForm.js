@@ -1,27 +1,45 @@
-// import React from 'react';
-//
-// const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
-//   return(
-//     <form onSubmit={handleSubmit}>
-//       <h1>Moments Form</h1>
-//       <input
-//         name="endTime"
-//         label="End Date"
-//         type="datetime-local"
-//         value={newMoment.endTime}
-//         onChange={handleChange}>
-//       </input>
-//       <input
-//         name="lastBetTime"
-//         label="Last Bet"
-//         type="datetime-local"
-//         onChange={handleChange}
-//         value={newMoment.lastBetTime}>
-//       </input>
-//
-//       <button>Create</button>
-//     </form>
-//   );
-// };
-//
-// export default MomentsForm;
+import React from 'react';
+import { Box, Field, Control, Input, Button } from 'reactbulma';
+
+const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
+  return(
+    <div>
+      <h1 className="smallLogo">alpha<span className="bitcoin"><i className="fa fa-btc" aria-hidden="true"></i></span>et</h1>
+      <br />
+      <hr />
+      <Box className="frameBox">
+        <h1>Set a start time for this frame...</h1>
+        <br />
+        <Field>
+          <Control>
+            <Input
+              medium
+              onChange={handleChange}
+              value={newMoment.startTime}
+              type="datetime-local"
+              name="startTime"
+            />
+          </Control>
+        </Field>
+        <h1>Set an end time for this frame...</h1>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <Field>
+            <Control>
+              <Input
+                medium
+                onChange={handleChange}
+                value={newMoment.endTime}
+                type="datetime-local"
+                name="endTime"
+              />
+            </Control>
+          </Field>
+          <Button primary className="newBtn">Create Frame</Button>
+        </form>
+      </Box>
+    </div>
+  );
+};
+
+export default MomentsForm;

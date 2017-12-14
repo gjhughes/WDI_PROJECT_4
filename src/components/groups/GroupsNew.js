@@ -11,7 +11,10 @@ class GroupsNew extends React.Component{
       createdBy: {},
       groupName: '',
       image: '',
-      members: [],
+      members: {
+        user: '',
+        score: ''
+      },
       moments: []
     }
   }
@@ -34,14 +37,14 @@ class GroupsNew extends React.Component{
     this.setState({ group });
   }
 
-  handleSelectChange = (e) => {
-    const selectedUserId = e.target.options[e.target.options.selectedIndex].getAttribute('data-value');
-    const selectedName = e.target.value.split(' ');
-    const selectedUser = { id: selectedUserId, firstName: selectedName[0], lastName: selectedName[1]};
-    const members = this.state.group.members.concat([selectedUser]);
-    const group = Object.assign({}, this.state.group, { members });
-    this.setState({ group });
-  }
+  // handleSelectChange = (e) => {
+  //   const selectedUserId = e.target.options[e.target.options.selectedIndex].getAttribute('data-value');
+  //   const selectedName = e.target.value.split(' ');
+  //   const selectedUser = { id: selectedUserId, firstName: selectedName[0], lastName: selectedName[1]};
+  //   const members = this.state.group.members.concat([selectedUser]);
+  //   const group = Object.assign({}, this.state.group, { members });
+  //   this.setState({ group });
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -65,11 +68,9 @@ class GroupsNew extends React.Component{
   render() {
     return(
       <GroupsForm
-        users={this.state.users}
         group={this.state.group}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        handleSelectChange={this.handleSelectChange}
       />
     );
   }

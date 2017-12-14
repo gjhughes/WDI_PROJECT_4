@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans|Roboto');
+
 
 /******************/
 /** Main Styles **/
@@ -6,13 +6,13 @@
 
 html, body{
   height: 100vh;
-  background-color: #455A64;
+  background-color: #607D8B;
 }
 
 
-/***********/
-/** Logo **/
-/*********/
+/*********************/
+/** Heading Styles **/
+/*******************/
 
 .logo {
   font-family: 'Russo One', sans-serif;
@@ -25,8 +25,27 @@ html, body{
   transform: translate(-50%, -50%);
 }
 
+.smallLogo {
+  display: inline;
+  margin-top: 8px;
+  font-size: 24px;
+  font-family: 'Russo One', sans-serif;
+  color: #FAFAFA;
+  position: absolute;
+  text-align: center;
+}
+
+.bitPrice p {
+  display: inline;
+  float: right;
+}
+
 .bitcoin {
   color: #CDDC39;
+}
+
+.heading {
+  color: #FAFAFA;
 }
 
 /********************/
@@ -34,19 +53,21 @@ html, body{
 /******************/
 
 .mainNav  {
-  background-color: #455A64;
+  background-color: #607D8B;
 }
-
-/*********************/
-/** Heading Styles **/
-/*******************/
-
-
 
 /********************/
 /** Button Styles **/
 /******************/
 
+.newBtn {
+  background-color: #CDDC39 !important;
+  color: #212121 !important;
+}
+
+.showBtn {
+  background-color: #455A64 !important;
+}
 
 /******************/
 /** Form Styles **/
@@ -66,7 +87,7 @@ html, body{
 }
 
 .loginBox Button {
-  background-color: #455A64 !important;
+  background-color: #607D8B !important;
 }
 
 .loginBox h1 {
@@ -80,4 +101,49 @@ html, body{
 
 .register {
   color: #455A64;
+}
+
+/*****************/
+/** Box Styles **/
+/***************/
+
+div.box {
+  background-color: #FAFAFA;
+}
+
+div.card {
+  background-color: #CFD8DC;
+  border-radius: 5px;
+}
+
+div.card:hover {
+  background-color: #FAFAFA;
+}
+
+.predictionBox {
+  text-align: center;
+}
+
+.timer {
+  width: 700px;
+  height: 228px;
+  background-color: red !important;
+}
+
+/*******************/
+/** Table Styles **/
+/*****************/
+
+.table tr {
+  background-color: #FAFAFA;
+  border-color: #CDDC39 !important;
+}
+.table th {
+  background-color: #FAFAFA;
+  border-color: #CDDC39 !important;
+}
+
+.table td {
+  background-color: #FAFAFA;
+  border-color: #CDDC39 !important;
 }

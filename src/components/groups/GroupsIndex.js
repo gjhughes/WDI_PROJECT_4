@@ -22,9 +22,12 @@ class GroupsIndex extends React.Component {
   render() {
     return(
       <div className='container'>
+        <h1 className="smallLogo">alpha<span className="bitcoin"><i className="fa fa-btc" aria-hidden="true"></i></span>et</h1>
+        <br />
+        <hr />
         <Box>
           <Link to={'/groups/new'}>
-            <Button primary outlined fullwidth>Start New Group</Button>
+            <Button primary fullwidth className="newBtn">Create a New Group</Button>
           </Link>
         </Box>
         {this.state.groups.map(group =>
@@ -34,7 +37,7 @@ class GroupsIndex extends React.Component {
                 <Title is="4">{group.groupName}</Title>
                 <SubTitle><small>Group created by: {group.createdBy.firstName} {' '} {group.createdBy.lastName}</small></SubTitle>
 
-                <Level textIsCentered className="level">
+                <Level className="level">
                   <Level.Item>
                     Current Rankings:
                   </Level.Item>
@@ -44,7 +47,7 @@ class GroupsIndex extends React.Component {
                     </Level.Item>
                   )}
                 </Level>
-                <Link to={`groups/${group.id}`}>
+                <Link to={`/groups/${group.id}`}>
                   <Button outlined fullwidth>Show Group</Button>
                 </Link>
               </Card.Content>

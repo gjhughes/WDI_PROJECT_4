@@ -22,8 +22,7 @@ class Price extends React.Component{
 
     return(
       <div>
-        <h1>${this.state.currentPrice}</h1>
-        <br /><p>BitCoin Price</p>
+        <h1>BitCoin Price: ${this.state.currentPrice}</h1>
       </div>
     );
   }

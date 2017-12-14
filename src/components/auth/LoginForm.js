@@ -37,7 +37,7 @@ const LoginForm = ({ handleSubmit, handleChange, user }) => {
           </Field>
         </form>
         <hr />
-        <h3>New to alphabet? <Link to="/register" className="register">Sign Up</Link></h3>
+        <h3>New to alpha<i className="fa fa-btc" aria-hidden="true"></i>et? <Link to="/register" className="register">Sign Up</Link></h3>
       </Box>
     </div>
   );
