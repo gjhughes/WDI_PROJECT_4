@@ -25,10 +25,9 @@ function createCron(endTime, groupId, momentId) {
           .exec()
           .then(group => {
             const moment = group.moments.id(momentId);
-            // update the moment
+
             moment.endPrice = latestValue;
 
-            // calculate the score for the users
             moment.bets.sort((a, b) => Math.abs(latestValue - b.prediction) - Math.abs(latestValue - a.prediction))
               .forEach((bet, i) => {
                 const user = group.members.find(member => member.user.equals(bet.user));

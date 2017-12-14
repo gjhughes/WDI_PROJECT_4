@@ -5,6 +5,7 @@ function betsCreate(req, res, next) {
 
   Group
     .findById(req.params.id)
+    .populate()
     .exec()
     .then(group => {
       const moment = group.moments.find(moment => moment.id === req.params.momentId);

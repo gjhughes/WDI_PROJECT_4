@@ -2,9 +2,9 @@ import React     from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from '../statics/Home';
-
 import Login from '../auth/Login';
 import Register from '../auth/Register';
+
 
 import GroupsIndex from '../groups/GroupsIndex';
 import GroupsShow from '../groups/GroupsShow';
@@ -25,7 +25,7 @@ const Routes = () => {
       <Route exact path="/groups/:id/moments/:momentId/bet" component={PredictionsNew} />
       <Route path="/groups/new" component={GroupsNew} />
       <Route path="/groups/:id" component={GroupsShow} />
-      <Route path="/groups" component={GroupsIndex} />
+      <Route exact path="/groups" component={GroupsIndex} />
     </Switch>
   );
 };

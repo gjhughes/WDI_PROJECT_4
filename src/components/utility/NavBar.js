@@ -1,32 +1,32 @@
-import React                from 'react';
-import { withRouter } from 'react-router-dom';
-import { Navbar, NavItem , Button } from 'react-materialize';
-
-import Auth from '../../lib/Auth';
-
-const NavBar = ({ history }) => {
-
-  function logout(e) {
-    e.preventDefault();
-
-    Auth.removeToken();
-    history.push('/');
-  }
-
-  return(
-    <Navbar className="mainNav" right>
-      { !Auth.isAuthenticated() &&
-        <NavItem className="navItem" href="/register">Register</NavItem>}
-      {' '}
-      { !Auth.isAuthenticated() &&
-        <NavItem className="navItem" href="/login">
-          <Button waves="light" className="loginButton">Login</Button>
-        </NavItem>}
-      {' '}
-      { Auth.isAuthenticated() && <NavItem href="/groups" className="navItem">Groups</NavItem>}
-      { Auth.isAuthenticated() && <NavItem href="#" className="navItem" onClick={logout}>Logout</NavItem>}
-    </Navbar>
-  );
-};
-
-export default withRouter(NavBar);
+// import React                from 'react';
+// import { withRouter } from 'react-router-dom';
+// import { Nav, Button } from 'reactbulma';
+//
+// import Auth from '../../lib/Auth';
+//
+// const NavBar = ({ history }) => {
+//
+//   function logout(e) {
+//     e.preventDefault();
+//
+//     Auth.removeToken();
+//     history.push('/');
+//   }
+//
+//   return(
+//     <Nav className="mainNav" right>
+//       { !Auth.isAuthenticated() &&
+//         <Nav.Right className="navItem" href="/register">Register</Nav.Right>}
+//       {' '}
+//       { !Auth.isAuthenticated() &&
+//         <Nav.Right className="navItem" href="/login">
+//           <Button className="loginButton">Login</Button>
+//         </Nav.Right>}
+//       {' '}
+//       { Auth.isAuthenticated() && <Nav.Right href="/groups" className="navItem">Groups</Nav.Right>}
+//       { Auth.isAuthenticated() && <Nav.Right href="#" className="navItem" onClick={logout}>Logout</Nav.Right>}
+//     </Nav>
+//   );
+// };
+//
+// export default withRouter(NavBar);

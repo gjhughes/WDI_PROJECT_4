@@ -1,6 +1,7 @@
 import React     from 'react';
 import Axios     from 'axios';
 import LoginForm from './LoginForm';
+import { withRouter } from 'react-router-dom';
 
 import Auth from '../../lib/Auth';
 
@@ -39,4 +40,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

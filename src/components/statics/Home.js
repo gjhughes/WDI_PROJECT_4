@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-materialize';
+import { Icon } from 'react-fa';
+
+import Login from '../auth/Login';
 
 const Home = () => {
   return(
-    <div className='container'>
-      <Link to="/login">
-        <Button waves="light">Login</Button>
-      </Link>
-      <Link to="/register">
-        <Button waves="light" className="loginButton">Register</Button>
-      </Link>
+    <div>
+      <div className='headingContainer'>
+        <h1 className="logo">alpha<span className="bitcoin"><i className="fa fa-btc" aria-hidden="true"></i></span>et</h1>
+      </div>
+      <div className='loginContainer'>
+        <Login />
+      </div>
     </div>
+
   );
 };
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
-import { Row, Col, Card, Chip, Button } from 'react-materialize';
+// import Moment from 'moment';
 import { Link } from 'react-router-dom';
+import { Box, Card, Title, SubTitle, Level, Button } from 'reactbulma';
 
 class GroupsIndex extends React.Component {
   state = {
@@ -20,98 +21,39 @@ class GroupsIndex extends React.Component {
 
   render() {
     return(
-      <main className="container">
-        <h1>Groups Index</h1>
-        <div>
-          <Link to="groups/new">
-            <Button waves="light">Create Group</Button>
+      <div className='container'>
+        <Box>
+          <Link to={'/groups/new'}>
+            <Button primary outlined fullwidth>Start New Group</Button>
           </Link>
-        </div>
-        <Row>
-          {this.state.groups.map(group =>
-            <Col key={group.id}>
-              <Card
-                className="lighten"
-                title={group.groupName}
-                actions={[<Link key={group.id} to={`/groups/${group.id}`}>Show Group</Link>]}>
-                Created by: {group.createdBy.firstName}<br />
-                <small>Members: </small><br />
-                {group.members.map(user =>
-                  <Chip
-                    className="blue-gray"
-                    key={user.user.id}>
-                    <img src={user.user.image} />
-                    {user.user.firstName}
-                  </Chip>
-                )}
-              </Card>
-            </Col>
-          )}
-        </Row>
-      </main>
+        </Box>
+        {this.state.groups.map(group =>
+          <Box key={group.id}>
+            <Card >
+              <Card.Content>
+                <Title is="4">{group.groupName}</Title>
+                <SubTitle><small>Group created by: {group.createdBy.firstName} {' '} {group.createdBy.lastName}</small></SubTitle>
+
+                <Level textIsCentered className="level">
+                  <Level.Item>
+                    Current Rankings:
+                  </Level.Item>
+                  {group.members.map(member =>
+                    <Level.Item key={member.id}>
+                      {member.user.firstName}
+                    </Level.Item>
+                  )}
+                </Level>
+                <Link to={`groups/${group.id}`}>
+                  <Button outlined fullwidth>Show Group</Button>
+                </Link>
+              </Card.Content>
+            </Card>
+          </Box>
+        )}
+      </div>
     );
   }
 }
 
 export default GroupsIndex;
-//
-// import React from 'react';
-// import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-// import FlatButton from 'material-ui/FlatButton';
-// import Toggle from 'material-ui/Toggle';
-//
-// class GroupsIndex extends React.Component {
-//   state = {
-//     groups: [],
-//     members: []
-//   }
-//
-//   componentWillMount() {
-//     Axios
-//       .get('/api/groups')
-//       .then(res => {
-//         this.setState({ groups: res.data });
-//       })
-//       .catch(err => console.log(err));
-//   }
-//
-//
-// render() {
-//     return (
-//       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
-//         <CardHeader
-//           title="URL Avatar"
-//           subtitle="Subtitle"
-//           avatar="images/ok-128.jpg"
-//           actAsExpander={true}
-//           showExpandableButton={true}
-//         />
-//         <CardText>
-//           <Toggle
-//             toggled={this.state.expanded}
-//             onToggle={this.handleToggle}
-//             labelPosition="right"
-//             label="This toggle controls the expanded state of the component."
-//           />
-//         </CardText>
-//         <CardMedia
-//           expandable={true}
-//           overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-//         >
-//           <img src="images/nature-600-337.jpg" alt="" />
-//         </CardMedia>
-//         <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
-//         <CardText expandable={true}>
-//           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-//           Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-//           Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-//           Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-//         </CardText>
-//         <CardActions>
-//           <FlatButton label="Expand" onClick={this.handleExpand} />
-//           <FlatButton label="Reduce" onClick={this.handleReduce} />
-//         </CardActions>
-//       </Card>
-//     );
-//   }
-// }
