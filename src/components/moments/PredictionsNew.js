@@ -43,19 +43,12 @@ class PredictionsNew extends React.Component{
 
   render() {
     return(
-      <dvi className='container'>
-        <div className='container'>
-          <h1>{this.state.moment.endTime}</h1>
-          <p>Moment Show</p>
-        </div>
-        <div className='container'>
-          <PredictionsForm
-            newBet={this.state.newBet}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-          />
-        </div>
-      </dvi>
+      <PredictionsForm
+        newBet={this.state.newBet}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+      />
+
     );
   }
 }

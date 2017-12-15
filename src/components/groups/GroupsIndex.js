@@ -65,6 +65,7 @@ class GroupsIndex extends React.Component {
             </div>
           </div>
         </div>
+
       </div>
 
     );

@@ -14,6 +14,12 @@ const NavBar = ({ history }) => {
   }
 
   return(
+
+    
+
+
+
+
     <Nav className="mainNav" right>
       { !Auth.isAuthenticated() &&
         <Nav.Right className="navItem" href="/register">Register</Nav.Right>}

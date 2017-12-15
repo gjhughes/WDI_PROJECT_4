@@ -4,6 +4,7 @@ const rp      = require('request-promise');
 
 function createCron(endTime, groupId, momentId) {
   return new CronJob(new Date(endTime), function() {
+    console.log('End Price Cron Fired');
     return rp({
       url: 'https://www.alphavantage.co/query',
       qs: {

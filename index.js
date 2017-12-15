@@ -18,16 +18,19 @@ const { port, dbURI, env } = require('./config/environment');
 mongoose.connect(dbURI, { useMongoClient: true });
 
 if('test' !== env) app.use(morgan('dev'));
-app.use(express.static(`${__dirname}/public`));
-app.use(bodyParser.json());
 
-app.use(customResponses);
+
+app.use(express.static(`${__dirname}/public`));
+
+app.use(bodyParser.json());
 app.use('/api', router);
+app.use(priceTracker);
+app.use(customResponses);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+
 
 app.use(errorHandler);
 
-// app.use(priceTracker);
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
 

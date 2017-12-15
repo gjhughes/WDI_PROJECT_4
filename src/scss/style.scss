@@ -60,7 +60,13 @@ html, body{
 /** Button Styles **/
 /******************/
 
+
 .newBtn {
+  background-color: #CDDC39 !important;
+  color: #212121 !important;
+}
+
+.moment-btn {
   background-color: #CDDC39 !important;
   color: #212121 !important;
 }
@@ -84,7 +90,21 @@ html, body{
   top: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
+}
 
+.prediction-box {
+  padding-top: 200px;
+  font-size: 24px;
+  color: #455A64;
+  background-color: #FAFAFA !important;
+  width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.prediction-box h1 {
+  font-size: 24px;
+  color: #455A64;
 }
 
 .loginBox Button {
@@ -135,6 +155,10 @@ div.card:hover {
   background-color: white !important;
 }
 
+.moment-box {
+  margin-top: 200px;
+}
+
 /*******************/
 /** Table Styles **/
 /*****************/
@@ -179,4 +203,9 @@ div.card:hover {
   text-align: center;
   font-size: 24px;
   color: #FAFAFA;
+}
+
+.spinner-wrapper {
+  text-align: center;
+  margin: 0 auto;
 }

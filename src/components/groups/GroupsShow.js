@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { Box, Button } from 'reactbulma';
-
+import ReactMomentCountDown from 'react-moment-countdown';
 import Price from '../prices/Prices';
 // import Leaderboard from '../utility/Leaderboard';
 
@@ -24,7 +24,7 @@ class GroupsShow extends React.Component {
           moment.roundedPrice = moment.roundedPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
           return moment;
         });
-        this.setState({ group: res.data });
+        this.setState({ group: res.data, members: res.data.members });
         console.log(this.state.group);
         console.log(res.data.moments.map(moment => moment.isPast));
       })
@@ -43,96 +43,77 @@ class GroupsShow extends React.Component {
           </Link>
         </Box>
         <hr />
-        <Box >
-          <Price />
-        </Box>
+
+        <div className="columns">
+          <div className="column is-one-third">
+            <Box >
+              <Price />
+            </Box>
+          </div>
+
+          <div className="column is-two-thirds">
+            <Box>
+              <div className="table-div">
+                <table className="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Current Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { this.state.members.map(member =>
+                      <tr key={member.id}>
+                        <th>{member.user.firstName}</th>
+                        <th>{member.points}</th>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Box>
+          </div>
+        </div>
 
         <div className="container">
           <div className="box">
-            <h1 className="heading">Upcoming / In Progress</h1>
+
             <div className="columns is-multiline is-fullwidth">
               {this.state.group.moments && this.state.group.moments.map(moment => {
                 return(
-                  <div className="column is-half has-text-centered" key={moment.id}>
+                  <div className="column is-fullwidth has-text-centered" key={moment.id}>
                     { !moment.isPast &&
-                      <div className="box inner-box">
-                        <h1 key={moment.id}>Test</h1>
-                      </div>
-                    }
-                  </div>
-                );
-              })}
-            </div>
-            <h1 className="heading">Past Frames</h1>
-            <div className="columns is-multiline is-fullwidth">
-              {this.state.group.moments && this.state.group.moments.map(moment => {
-                return(
-                  <div className="column is-half has-text-centered" key={moment.id}>
-                    <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
-                      <div className="box inner-box">
-                        <h1 className="has-text-centered">Gavin Hughes</h1>
-                        <small className="has-text-centered">Winner</small>
-                        <hr />
-                        <div key={moment.id}>
-                          <small>Ended at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.endTime}</Moment></small>
+                      <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
+                        <h1 className="heading">Pending / In Progress</h1>
+                        <div className="box is-fullwidth inner-box">
+                        Starting in: <span> </span>
+                          <ReactMomentCountDown
+                            toDate={ moment.lastBetTime }
+                          />
+                          <hr />
+                          <h1 key={moment.id}><small>Ending at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.endTime}</Moment></small></h1>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    }
+                    { moment.isPast &&
+                      <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
+                        <h1 className="heading">Past Frames</h1>
+                        <div className="box inner-box">
+                          <h1 className="has-text-centered">Gavin Hughes</h1>
+                          <small className="has-text-centered">Winner</small>
+                          <hr />
+                          <div key={moment.id}>
+                            <small>Ended at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.endTime}</Moment></small>
+                          </div>
+                        </div>
+                      </Link>
+                    }
                   </div>
                 );
               })}
             </div>
           </div>
         </div>
-
-
-
-        {/* <h1 className="heading">Upcoming Frames</h1>
-        <Box>
-          <div>
-            { this.state.group.moments && this.state.group.moments.map(moment => {
-              return(
-                <div key={moment.id}>
-                  { !moment.isPast &&
-                  <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
-                    <Card className="frameCard">
-                      <Card.Content>
-                        <Media>
-                          <Media.Content>
-                            <small>Starting at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.lastBetTime}</Moment></small>
-                          </Media.Content>
-                        </Media>
-                      </Card.Content>
-                    </Card>
-                  </Link>
-                  }
-                </div>
-              );
-            })}
-          </div>
-        </Box> */}
-        {/* <Box>
-          <div>
-            { this.state.group.moments && this.state.group.moments.map(moment => {
-              return(
-                <div key={moment.id}>
-                  <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
-                    <Card className="frameCard">
-                      <Card.Content>
-                        <Media>
-                          <Media.Content>
-                            <small>Ended at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.endTime}</Moment></small>
-                          </Media.Content>
-                        </Media>
-                      </Card.Content>
-                    </Card>
-                  </Link>
-                  <br />
-                </div>
-              );
-            })}
-          </div>
-        </Box> */}
 
       </div>
     );
