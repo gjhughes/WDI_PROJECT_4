@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import { Box, Button, Card, Media } from 'reactbulma';
+import { Box, Button } from 'reactbulma';
 
 import Price from '../prices/Prices';
 // import Leaderboard from '../utility/Leaderboard';
@@ -26,6 +26,7 @@ class GroupsShow extends React.Component {
         });
         this.setState({ group: res.data });
         console.log(this.state.group);
+        console.log(res.data.moments.map(moment => moment.isPast));
       })
       .catch(err => console.log(err));
   }
@@ -46,13 +47,47 @@ class GroupsShow extends React.Component {
           <Price />
         </Box>
 
-        <Box>
-          {/* <Leaderboard
-            members={this.state.members}
-          /> */}
-        </Box>
+        <div className="container">
+          <div className="box">
+            <h1 className="heading">Upcoming / In Progress</h1>
+            <div className="columns is-multiline is-fullwidth">
+              {this.state.group.moments && this.state.group.moments.map(moment => {
+                return(
+                  <div className="column is-half has-text-centered" key={moment.id}>
+                    { !moment.isPast &&
+                      <div className="box inner-box">
+                        <h1 key={moment.id}>Test</h1>
+                      </div>
+                    }
+                  </div>
+                );
+              })}
+            </div>
+            <h1 className="heading">Past Frames</h1>
+            <div className="columns is-multiline is-fullwidth">
+              {this.state.group.moments && this.state.group.moments.map(moment => {
+                return(
+                  <div className="column is-half has-text-centered" key={moment.id}>
+                    <Link to={`${this.props.match.params.id}/moments/${moment.id}`}>
+                      <div className="box inner-box">
+                        <h1 className="has-text-centered">Gavin Hughes</h1>
+                        <small className="has-text-centered">Winner</small>
+                        <hr />
+                        <div key={moment.id}>
+                          <small>Ended at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.endTime}</Moment></small>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
-        <h1 className="heading">Upcoming Frames</h1>
+
+
+        {/* <h1 className="heading">Upcoming Frames</h1>
         <Box>
           <div>
             { this.state.group.moments && this.state.group.moments.map(moment => {
@@ -75,10 +110,8 @@ class GroupsShow extends React.Component {
               );
             })}
           </div>
-        </Box>
-
-        <h1 className="heading">Previous Frames</h1>
-        <Box>
+        </Box> */}
+        {/* <Box>
           <div>
             { this.state.group.moments && this.state.group.moments.map(moment => {
               return(
@@ -99,7 +132,7 @@ class GroupsShow extends React.Component {
               );
             })}
           </div>
-        </Box>
+        </Box> */}
 
       </div>
     );
