@@ -1,8 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
-// import Moment from 'moment';
 import { Link } from 'react-router-dom';
-import { Box, Card, Title, SubTitle, Level, Button } from 'reactbulma';
+import { Box, Button } from 'reactbulma';
 
 class GroupsIndex extends React.Component {
   state = {
@@ -30,31 +29,44 @@ class GroupsIndex extends React.Component {
             <Button primary fullwidth className="newBtn">Create a New Group</Button>
           </Link>
         </Box>
-        {this.state.groups.map(group =>
-          <Box key={group.id}>
-            <Card >
-              <Card.Content>
-                <Title is="4">{group.groupName}</Title>
-                <SubTitle><small>Group created by: {group.createdBy.firstName} {' '} {group.createdBy.lastName}</small></SubTitle>
+        <hr />
 
-                <Level className="level">
-                  <Level.Item>
-                    Current Rankings:
-                  </Level.Item>
-                  {group.members.map(member =>
-                    <Level.Item key={member.id}>
-                      {member.user.firstName}
-                    </Level.Item>
-                  )}
-                </Level>
-                <Link to={`/groups/${group.id}`}>
-                  <Button outlined fullwidth>Show Group</Button>
-                </Link>
-              </Card.Content>
-            </Card>
-          </Box>
-        )}
+        <div className="container">
+          <div className="box">
+            <div className="columns is-multiline is-fullwidth">
+              {this.state.groups.map(group =>
+                <div className="column is-half has-text-centered" key={group.id}>
+                  <div className="box inner-box" key={group.id}>
+                    <h1 className="has-text-centered">{group.groupName}</h1>
+                    <small className="has-text-centered">Created by: {group.createdBy.firstName}{' '}{group.createdBy.lastName}</small>
+                    <hr />
+                    <div className="level">
+                      {group.members.map(member =>
+                        <div key={member.id}>
+                          <div className="level-item has-text-centered">
+                            <div >
+                              <small>{member.user.firstName}</small>
+                            </div>
+                          </div>
+                          <div className="level-item has-text-centered">
+                            <div >
+                              <small>{member.user.lastName}</small>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <Link to={`groups/${group.id}`}>
+                      <Button primary fullwidth className="show-btn">Show Group</Button>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+
     );
   }
 }

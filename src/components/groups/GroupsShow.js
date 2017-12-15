@@ -41,6 +41,7 @@ class GroupsShow extends React.Component {
             <Button primary fullwidth className="newBtn">Start a New Frame</Button>
           </Link>
         </Box>
+        <hr />
         <Box >
           <Price />
         </Box>
@@ -63,7 +64,7 @@ class GroupsShow extends React.Component {
                       <Card.Content>
                         <Media>
                           <Media.Content>
-                            <small>Starting at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.startTime}</Moment></small>
+                            <small>Starting at: <Moment format="Do MMMM YYYY, HH:mm a">{moment.lastBetTime}</Moment></small>
                           </Media.Content>
                         </Media>
                       </Card.Content>

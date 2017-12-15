@@ -40,6 +40,9 @@ router.route('/groups/:id/moments/:momentId')
   .get(moments.show)
   .delete(moments.delete);
 
+// router.route('/groups/:id/moments/:momentId/data')
+//   .get(moments.getData);
+
 router.route('/groups/:id/moments/:momentId/bets')
   .put(secureRoute, bets.create);
 

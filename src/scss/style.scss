@@ -65,7 +65,8 @@ html, body{
   color: #212121 !important;
 }
 
-.showBtn {
+.show-btn {
+  color: #FAFAFA !important;
   background-color: #455A64 !important;
 }
 
@@ -126,9 +127,22 @@ div.card:hover {
   background-color: red !important;
 }
 
+.table-div {
+  border-radius: 5px;
+}
+
+.inner-box {
+  background-color: white !important;
+}
+
 /*******************/
 /** Table Styles **/
 /*****************/
+
+.prediction-border {
+  border-bottom: 3px solid #CDDC39;
+  border-left: 3px solid #CDDC39;
+}
 
 .table tr {
   background-color: #FAFAFA;
@@ -152,7 +166,7 @@ div.card:hover {
   color: red;
   border-radius: 5px;
   text-align: center;
-  font-size: 24px;
+  font-size: 64px;
   background-color: #FAFAFA;
 }
 

@@ -31,7 +31,7 @@ class MomentsNew extends React.Component{
 
   handleChange = ({ target: { name, value }}) => {
     const newMoment = Object.assign({}, this.state.newMoment, { [name]: value });
-    this.setState({ newMoment });
+    this.setState({ newMoment }, () => console.log(this.state));
   }
 
   render() {

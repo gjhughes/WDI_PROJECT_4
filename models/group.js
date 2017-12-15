@@ -8,7 +8,11 @@ const betSchema = new mongoose.Schema({
 const momentSchema = new mongoose.Schema(
   {
     endTime: { type: Date, required: true },
-    lastBetTime: { type: Date, required: true },
+    lastBetTime: { type: Date },
+    prevPrices: [{
+      price: { type: Number },
+      tmee: { type: Date }
+    }],
     endPrice: { type: Number },
     bets: [ betSchema ]
   }
