@@ -11,7 +11,7 @@ class MomentsNew extends React.Component{
       lastBetTime: ''
     }
   }
-
+ 
   componentWillMount() {
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
@@ -26,7 +26,6 @@ class MomentsNew extends React.Component{
       .post(`/api/groups/${this.props.match.params.id}/moments`, this.state.newMoment)
       .then(() => this.props.history.push(`/groups/${this.props.match.params.id}`))
       .catch(err => console.log(err));
-
   }
 
   handleChange = ({ target: { name, value }}) => {

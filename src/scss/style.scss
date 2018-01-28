@@ -1,211 +1,27 @@
+@import './_variables';
 
+/* Components */
+@import './components/sidebar';
+@import './components/home';
 
-/******************/
-/** Main Styles **/
-/****************/
+@import './partials/login';
+@import './partials/buttons';
 
-html, body{
-  height: 100vh;
-  background-color: #607D8B;
+* {
+  box-sizing: border-box;
 }
 
-
-/*********************/
-/** Heading Styles **/
-/*******************/
-
-.logo {
-  font-family: 'Russo One', sans-serif;
-  font-size: 64px;
-  color: #FAFAFA;
-  left: 50%;
-  position: absolute;
-  text-align: center;
-  top: 20%;
-  transform: translate(-50%, -50%);
+html, body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  background-color: $color-primary;
 }
 
-.smallLogo {
-  display: inline;
-  margin-top: 8px;
-  font-size: 24px;
-  font-family: 'Russo One', sans-serif;
-  color: #FAFAFA;
-  position: absolute;
-  text-align: center;
+section {
+  margin: 0 !important;
 }
 
-.bitPrice p {
-  display: inline;
-  float: right;
-}
-
-.bitcoin {
-  color: #CDDC39;
-}
-
-.heading {
-  color: #FAFAFA;
-}
-
-/********************/
-/** Navbar Styles **/
-/******************/
-
-.mainNav  {
-  background-color: #607D8B;
-}
-
-/********************/
-/** Button Styles **/
-/******************/
-
-
-.newBtn {
-  background-color: #CDDC39 !important;
-  color: #212121 !important;
-}
-
-.moment-btn {
-  background-color: #CDDC39 !important;
-  color: #212121 !important;
-}
-
-.show-btn {
-  color: #FAFAFA !important;
-  background-color: #455A64 !important;
-}
-
-/******************/
-/** Form Styles **/
-/****************/
-
-/* Login */
-
-.loginBox {
-  background-color: #FAFAFA !important;
-  left: 50%;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-}
-
-.prediction-box {
-  padding-top: 200px;
-  font-size: 24px;
-  color: #455A64;
-  background-color: #FAFAFA !important;
-  width: 500px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.prediction-box h1 {
-  font-size: 24px;
-  color: #455A64;
-}
-
-.loginBox Button {
-  background-color: #607D8B !important;
-}
-
-.loginBox h1 {
-  font-size: 24px;
-  color: #455A64;
-}
-
-.loginBox h3 {
-  color: #757575;
-}
-
-.register {
-  color: #455A64;
-}
-
-/*****************/
-/** Box Styles **/
-/***************/
-
-div.box {
-  background-color: #455A64;
-}
-
-div.card {
-  background-color: #FAFAFA;
-  border-radius: 5px;
-}
-
-div.card:hover {
-  background-color: #CFD8DC;
-}
-
-.timer {
-  width: 700gpx;
-  height: 228px;
-  background-color: red !important;
-}
-
-.table-div {
-  border-radius: 5px;
-}
-
-.inner-box {
-  background-color: white !important;
-}
-
-.moment-box {
-  margin-top: 200px;
-}
-
-/*******************/
-/** Table Styles **/
-/*****************/
-
-.prediction-border {
-  border-bottom: 3px solid #CDDC39;
-  border-left: 3px solid #CDDC39;
-}
-
-.table tr {
-  background-color: #FAFAFA;
-  border-color: #CDDC39 !important;
-}
-.table th {
-  background-color: #FAFAFA;
-  border-color: #CDDC39 !important;
-}
-
-.table td {
-  background-color: #FAFAFA;
-  border-color: #CDDC39 !important;
-}
-
-/*******************/
-/** Timer Styles **/
-/*****************/
-
-.countdown {
-  color: red;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 64px;
-  background-color: #FAFAFA;
-}
-
-.countdown span {
-  weight: 600;
-  color: #455A64;
-}
-
-.clockHeading {
-  text-align: center;
-  font-size: 24px;
-  color: #FAFAFA;
-}
-
-.spinner-wrapper {
-  text-align: center;
-  margin: 0 auto;
+li {
+  list-style: none;
 }

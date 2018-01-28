@@ -1,16 +1,14 @@
 const User = require('../models/user');
 
 function usersIndex(req, res, next) {
-  User
-    .find()
+  User.find()
     .exec()
     .then(users => res.status(200).json(users))
     .catch(next);
 }
 
 function usersCreate(req, res, next) {
-  User
-    .create(req.body)
+  User.create(req.body)
     .then(watch => res.status(201).json(watch))
     .catch(next);
 }
@@ -25,7 +23,10 @@ function usersShow(req, res, next) {
 
 function usersUpdate(req, res, next) {
   User
-    .findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+    .findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    })
     .exec()
     .then(user => res.status(200).json(user))
     .catch(next);

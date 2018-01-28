@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Box, Button } from 'reactbulma';
 // import Moment from 'react-moment';
 import ReactMomentCountDown from 'react-moment-countdown';
+import {LineChart} from 'react-easy-chart';
 // import { VictoryLine } from 'victory';
 
 
@@ -39,6 +40,14 @@ class MomentsShow extends React.Component{
     Axios
       .get(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/data`)
       .then(res => this.setState({ moment: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault();
+    Axios
+      .delete(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}`)
+      .then(() => this.props.history.push(`/groups/${this.props.match.params.id}`))
       .catch(err => console.log(err));
   }
 
@@ -94,10 +103,38 @@ class MomentsShow extends React.Component{
                 />
               </div>
               <br />
+              <br />
             </Box>
           </div>
         </div>
         <hr />
+
+        <div className="columns">
+          <div className="column is-fullwidth">
+            <div className="box">
+              <div className="inner-box">
+                <LineChart
+                  xType={'text'}
+                  axes
+                  width={350}
+                  height={250}
+                  interpolate={'cardinal'}
+                  data={[
+                    [
+                      { x: '12:00', y: 20 },
+                      { x: '12:15', y: 10 },
+                      { x: '12:30', y: 33 },
+                      { x: '12:45', y: 45 },
+                      { x: '13:00', y: 15 }
+                    ]
+                  ]}
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
 
         { this.state.moment.prevPrices && <h1>{this.state.moment.prevPrices.length}</h1>}
         {/* <ul>
@@ -105,7 +142,7 @@ class MomentsShow extends React.Component{
             <li key={i}>{price}</li>
           )}
         </ul> */}
-
+        <Button onClick={this.handleDelete}>Delete</Button>
       </div>
     );
   }

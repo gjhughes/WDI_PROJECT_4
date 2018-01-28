@@ -1,8 +1,8 @@
 import React     from 'react';
 import Axios     from 'axios';
-import LoginForm from './LoginForm';
 import { withRouter } from 'react-router-dom';
 
+import LoginForm from './LoginForm';
 import Auth from '../../lib/Auth';
 
 class Login extends React.Component {

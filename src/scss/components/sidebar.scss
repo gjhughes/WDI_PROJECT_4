@@ -1,0 +1,28 @@
+aside {
+
+  min-height: 100vh;
+  background-color: $color-dark-primary;
+  font-size: 24px;
+
+  & .is-active {
+    background-color: $color-dark-primary !important;
+  }
+
+  & a:hover {
+    background-color: $color-dark-primary !important;
+
+    p {
+      color: $color-light-primary;
+    }
+
+  }
+
+  p {
+    color: $color-text-icons;
+  }
+
+  i {
+    color: $color-accent;
+  }
+
+}

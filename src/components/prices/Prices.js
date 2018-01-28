@@ -1,42 +1,49 @@
 import React from 'react';
 import Axios from 'axios';
-import Spinner from 'react-spinkit';
 
 class Price extends React.Component{
   state = {
+    bitcoin: {
+      time: [],
+      price: []
+    },
     currentPrice: '',
     isLoaded: false
   }
 
-  componentDidMount() {
-    Axios
-      .get('https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=BTC&market=USD&apikey=XTWGBR0H1M1TYI7R')
-      .then(res => {
-        const prices  = Object.entries(res.data['Time Series (Digital Currency Intraday)']);
-        const currentPrice = parseFloat(prices[0][1]['1b. price (USD)']);
-        const roundedPrice = Math.round((currentPrice + 0.00001) * 100) / 100;
-        this.setState({ currentPrice: roundedPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'), isLoaded: true });
-      })
-      .catch(err => console.log(err));
-  }
+    currentValueInterval = null;
 
-  render() {
+    componentDidMount() {
+      Axios
+        .get('https://api.coindesk.com/v1/bpi/currentprice/GBP.json')
+        .then(res => {
+          const timeSeries = res.data[Object.keys(res.data)[0]];
+          const time = timeSeries[Object.keys(timeSeries)[2]];
+          const bpi = res.data[Object.keys(res.data)[2]];
+          const gbp = bpi[Object.keys(bpi)[1]];
+          const currentPrice = gbp[Object.keys(gbp)[3]];
 
-    return(
+          this.setState({ bitcoin: { time: time, price: currentPrice } });
 
-      <div>
-        <div className="box inner-box">
-          { this.state.currentPrice && <div>
-            <h1 className="has-text-centered">${this.state.currentPrice}</h1>
-            <hr />
-            <p className="has-text-centered">Latest Bitcoin price</p>
-          </div>}
-          { !this.state.isLoaded && <div className="has-text-centered"><Spinner className="spinner-wrapper" name="ball-spin-fade-loader" color="#CDDC39" /><br /><br /></div> }
+        })
+        .catch(err => console.log(err));
+
+      // this.currentValueInterval = setInterval(this.getCurrentPrice.bind(this), 3000);
+    }
+
+    render() {
+      return(
+        <div>
+          <div className="box inner-box">
+            { this.state.bitcoin.price && <div>
+              <h1 className="has-text-centered">£{this.state.bitcoin.price} {' '} at {this.state.bitcoin.time}</h1>
+              <hr />
+              <p className="has-text-centered">Latest Bitcoin price</p>
+            </div>}
+          </div>
         </div>
-      </div>
-
-    );
-  }
+      );
+    }
 }
 
 export default Price;

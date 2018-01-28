@@ -1,9 +1,9 @@
 import React     from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from '../statics/Home';
+import Home from '../statics/Login';
 import Login from '../auth/Login';
-import Register from '../auth/Register';
+import HomeRegister from '../statics/Register';
 
 import GroupsIndex from '../groups/GroupsIndex';
 import GroupsShow from '../groups/GroupsShow';
@@ -20,8 +20,7 @@ const Routes = () => {
       <Route exact path="/groups/:id/moments/:momentId" component={MomentsShow} />
       <Route  exact path="/groups/:id/moments/:momentId/bet" component={PredictionsNew} />
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+      <Route path="/register" component={HomeRegister} />
       <Route path="/groups/new" component={GroupsNew} />
       <Route path="/groups/:id" component={GroupsShow} />
       <Route path="/groups" component={GroupsIndex} />

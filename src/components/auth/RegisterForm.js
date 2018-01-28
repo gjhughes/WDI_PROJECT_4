@@ -1,57 +1,104 @@
 import React from 'react';
-import { Box, Field, Input, Button } from 'reactbulma';
 
 const RegisterForm = ({ handleSubmit, handleChange, user }) => {
   return(
-    <div className="container">
-      <h1>Register</h1>
-
-      <Box>
-        <form onSubmit={handleSubmit}>
-          <Field>
-            <label className="label">First Name</label>
-            <Input
-              type="text"
-              name="firstName"
-              onChange={handleChange}
-              value={user.firstName}>
-            </Input>
-            <label className="label">Last Name</label>
-            <Input
-              type="text"
-              name="lastName"
-              onChange={handleChange}
-              value={user.lastName}>
-            </Input>
-            <label className="label">Email</label>
-            <Input
-              s={12}
-              type="text"
-              name="email"
-              onChange={handleChange}
-              value={user.email}>
-            </Input>
-            <label className="label">Password</label>
-            <Input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              value={user.password}>
-            </Input>
-            <label className="label">Confirm Password</label>
-            <Input
-              type="password"
-              name="passwordConfirmation"
-              onChange={handleChange}
-              value={user.passwordConfirmation}>
-            </Input>
-            <div className='container'>
-              <br />
-              <Button primary>Register</Button>
+    <div className='section'>
+      <div className='columns is-centered'>
+        <box className='column is-8 box register-box'>
+          <br />
+          <h1>Register</h1>
+          <br />
+          <form onSubmit={handleSubmit}>
+            <div className='field'>
+              <div className='field-body'>
+                <div className='field is-horizontal'>
+                  <p className='control has-icons-left'>
+                    <input
+                      className="input is-medium"
+                      placeholder="First Name"
+                      type="text"
+                      name="firstName"
+                      onChange={handleChange}
+                      value={user.firstName}
+                    />
+                    <span className="icon is-medium is-left">
+                      <i className="fa fa-user-circle-o"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className='field is-horizontal'>
+                  <p className='control has-icons-left'>
+                    <input
+                      className="input is-medium"
+                      placeholder="Last Name"
+                      type="text"
+                      name="lastName"
+                      onChange={handleChange}
+                      value={user.lastName}
+                    />
+                    <span className="icon is-medium is-left">
+                      <i className="fa fa-user-circle-o"></i>
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
-          </Field>
-        </form>
-      </Box>
+            <div className='field'>
+              <p className='control has-icons-left'>
+                <input
+                  className='input is-medium'
+                  placeholder="Email Address"
+                  type='text'
+                  name="email"
+                  onChange={handleChange}
+                  value={user.email}
+                />
+                <span className="icon is-medium is-left">
+                  <i className="fa fa-envelope-o"></i>
+                </span>
+              </p>
+            </div>
+            <div className='field'>
+              <div className='field-body'>
+                <div className='field is-horizontal'>
+                  <p className='control has-icons-left'>
+                    <input
+                      className="input is-medium"
+                      placeholder="Enter Password"
+                      type="password"
+                      name="password"
+                      onChange={handleChange}
+                      value={user.password}
+                    />
+                    <span className="icon is-medium is-left">
+                      <i className="fa fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className='field is-horizontal'>
+                  <p className='control has-icons-left'>
+                    <input
+                      className="input is-medium"
+                      placeholder="Confirm Password"
+                      type="password"
+                      name="passwordConfirmation"
+                      onChange={handleChange}
+                      value={user.passwordConfirmation}
+                    />
+                    <span className="icon is-medium is-left">
+                      <i className="fa fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div className="control">
+              <button className="button is-primary is-fullwidth is-medium">Register</button>
+            </div>
+          </form>
+        </box>
+      </div>
     </div>
   );
 };
