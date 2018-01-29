@@ -33,7 +33,7 @@ const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
                     placeholder="Group Name"
                     onChange={handleChange}
                     value={newMoment.endTime}
-                    name="lastBetTime"
+                    name="endTime"
                   />
                   <span className="icon is-medium is-left">
                     <i className="fa fa-calendar"></i>
