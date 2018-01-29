@@ -20,7 +20,10 @@ class GroupsShow extends React.Component{
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
       .then(res => {
-        this.setState({ group: res.data, moments: res.data.moments });
+        this.setState({
+          group: res.data,
+          moments: res.data.moments
+        });
         const members = this.state.group.members;
         const names = members.map(member => member.user.fullName);
         const points = members.map(member => member.points);
@@ -45,7 +48,8 @@ class GroupsShow extends React.Component{
   render() {
     const now = new Date().toISOString();
     const pastMoments = this.state.moments.filter(moment => moment.endTime < now);
-    const pendingMoment = this.state.moments.filter(moment => moment.lastBetTime > now);
+    const pending = this.state.moments.filter(moment => moment.lastBetTime > now);
+    console.log(pending);
     return(
       <div className="groups-show-wrapper">
         <div className='section'>
@@ -53,6 +57,16 @@ class GroupsShow extends React.Component{
             <div className='column is-10'>
               <h1 className="heading sub-heading has-text-left">{ this.state.group.groupName }</h1>
               <div className="box wrapper-box">
+
+                <div className='columns mini-header'>
+                  <div className='column is-4'>
+                    <h1 className='heading has-text-left'>Current Price</h1>
+                  </div>
+                  <div className='column is-8 has-text-left'>
+                    <h1 className='heading'>Current Leaderboard</h1>
+                  </div>
+                </div>
+
 
                 <div className="tile is-ancestor">
                   <div className="tile is-parent">
@@ -114,18 +128,17 @@ class GroupsShow extends React.Component{
                     </article>
                   </div>
                 </div>
-
               </div>
               <h1 className="heading has-text-left sub-heading">Upcoming Frame</h1>
               <div className="box wrapper-box">
                 <div className='box'>
-                  { pendingMoment.length === 0 ?
-                    <div>
-                      <h1>There are no upcoming frames in this group.</h1>
-                      <Link to={`/groups/${this.props.match.params.id}/moments/new`}><button>Create Frame</button></Link>
-                    </div>
-                    :
-                    <h1>Something to See</h1>}
+                  {
+                    pending.map(moment =>
+                      <div key={moment.id}>
+                        <h1>End: { moment.endTime }</h1>
+                        <h1>Last Bet: { moment.lastBetTime }</h1>
+                      </div>
+                    )}
                 </div>
               </div>
               <h1 className="heading has-text-left sub-heading">Previous Frames</h1>
@@ -144,7 +157,6 @@ class GroupsShow extends React.Component{
           </div>
         </div>
       </div>
-
     );
   }
 }

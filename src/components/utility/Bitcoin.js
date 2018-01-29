@@ -27,9 +27,10 @@ class Bitcoin extends React.Component{
 
   render() {
     return(
-      <div>
-        { this.state.bitcoin.price }
-        { this.state.bitcoin.time }
+      <div className="bitcoin-wrapper">
+        <span><i className="fa fa-btc"></i></span><br />
+        £{ this.state.bitcoin.price }<br />
+        <small>{ this.state.bitcoin.time }</small>
       </div>
     );
   }

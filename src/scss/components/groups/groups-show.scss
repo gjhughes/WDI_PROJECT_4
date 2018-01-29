@@ -1,5 +1,22 @@
 .groups-show-wrapper {
-
+  .wrapper-box:nth-of-type(1) {
+    padding-top: 0;
+  }
+  .column {
+    padding-bottom: 1px;
+  }
+  
+  .mini-header {
+    color: $color-light-secondary;
+    padding: 0;
+    margin: 0;
+  }
+  .bitcoin-wrapper {
+    i {
+      color: $color-accent;
+      font-size: 24px;
+    }
+  }
   .bitcoin-box {
     height: inherit;
   }
