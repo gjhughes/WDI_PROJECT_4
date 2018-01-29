@@ -18,49 +18,48 @@ class GroupsIndex extends React.Component {
 
   render() {
     return(
+      <div className="">
+        <div className='section'>
+          <div className='columns is-centered'>
+            <div className='column is-10'>
+              <h1 className="heading sub-heading has-text-left">All Groups</h1>
+              <div className="box wrapper-box">
+                <div className='columns is-centered'>
+                  { this.state.groups.map(group =>
+                    <div key={group.id} className='column is-6'>
+                      <Link to={`groups/${group.id}`}>
+                        <div className="box group-box">
+                          <small>{ group.groupName }</small>
+                          <div className='level is-mobile'>
+                            <div className='level-item has-text-centered'>
+                              <div>
+                                <p className="heading">1st</p>
+                                <p className="">Name</p>
+                              </div>
+                            </div>
+                            <div className='level-item has-text-centered'>
+                              <div>
+                                <p className='heading'>2nd</p>
+                                <p className=''>Name</p>
+                              </div>
+                            </div>
+                            <div className='level-item has-text-centered'>
+                              <div>
+                                <p className='heading'>3rd</p>
+                                <p className=''>Name</p>
+                              </div>
+                            </div>
+                          </div>
 
-      <div className="section login-section">
-        <div className='columns is-centered'>
-          <div className="box wrapper-box has-text-centered column is-10">
-            <h1>All Groups</h1>
-            <br />
-
-            <div className='columns is-centered'>
-              { this.state.groups.map(group =>
-                <div key={group.id} className='column is-6'>
-                  <Link to={`groups/${group.id}`}>
-                    <div className="box group-box">
-                      <small>{ group.groupName }</small>
-
-
-                      <div className='level is-mobile'>
-                        <div className='level-item has-text-centered'>
-                          <div>
-                            <p className="heading">1st</p>
-                            <p className="">Name</p>
+                          <div className=''>
+                            <small>Number of past frames in this group: { group.moments.length }</small>
                           </div>
                         </div>
-                        <div className='level-item has-text-centered'>
-                          <div>
-                            <p className='heading'>2nd</p>
-                            <p className=''>Name</p>
-                          </div>
-                        </div>
-                        <div className='level-item has-text-centered'>
-                          <div>
-                            <p className='heading'>3rd</p>
-                            <p className=''>Name</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className=''>
-                        <small>Number of past frames in this group: { group.moments.length }</small>
-                      </div>
+                      </Link>
                     </div>
-                  </Link>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

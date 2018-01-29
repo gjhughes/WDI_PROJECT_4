@@ -47,7 +47,7 @@ const Sidebar = ({ history }) => {
             <li>
               <Link to="/groups">
                 <i className="fa fa-group"></i><br />
-                <p>My Groups</p>
+                <p>All Groups</p>
               </Link>
             </li>
           </div>
