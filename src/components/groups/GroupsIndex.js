@@ -27,7 +27,7 @@ class GroupsIndex extends React.Component {
 
             <div className='columns is-centered'>
               { this.state.groups.map(group =>
-                <div  key={group.id} className='column is-6'>
+                <div key={group.id} className='column is-6'>
                   <Link to={`groups/${group.id}`}>
                     <div className="box group-box">
                       <small>{ group.groupName }</small>
@@ -57,7 +57,6 @@ class GroupsIndex extends React.Component {
                       <div className=''>
                         <small>Number of past frames in this group: { group.moments.length }</small>
                       </div>
-
                     </div>
                   </Link>
                 </div>
@@ -66,48 +65,6 @@ class GroupsIndex extends React.Component {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-      // <div className="container">
-      //   <div className="box">
-      //     <div className="columns is-multiline is-fullwidth">
-      //       {this.state.groups.map(group =>
-      //         <div className="column is-half has-text-centered" key={group.id}>
-      //           <div className="box inner-box" key={group.id}>
-      //             <h1 className="has-text-centered">{group.groupName}</h1>
-      //             <small className="has-text-centered">Created by: {group.createdBy.firstName}{' '}{group.createdBy.lastName}</small>
-      //             <hr />
-      //             <div className="level">
-      //               {group.members.map(member =>
-      //                 <div key={member.id}>
-      //                   <div className="level-item has-text-centered">
-      //                     <div >
-      //                       <small>{member.user.firstName}</small>
-      //                     </div>
-      //                   </div>
-      //                   <div className="level-item has-text-centered">
-      //                     <div >
-      //                       <small>{member.user.lastName}</small>
-      //                     </div>
-      //                   </div>
-      //                 </div>
-      //               )}
-      //             </div>
-      //             <Link to={`groups/${group.id}`}>
-      //               <Button primary fullwidth className="show-btn">Show Group</Button>
-      //             </Link>
-      //           </div>
-      //         </div>
-      //       )}
-      //     </div>
-      //   </div>
-      // </div>
-
-
     );
   }
 }

@@ -1,46 +1,52 @@
 import React from 'react';
-import { Box, Field, Control, Input, Button } from 'reactbulma';
 
 const MomentsForm = ({ handleChange, handleSubmit, newMoment }) => {
   return(
-    <div>
-      <h1 className="smallLogo">alpha<span className="bitcoin"><i className="fa fa-btc" aria-hidden="true"></i></span>et</h1>
-      <br />
-      <hr />
-      <div>
-        <Box className="loginBox moment-box">
-          <h1>Set a start time for this frame...</h1>
-          <br />
-          <Field>
-            <Control>
-              <Input
-                medium
-                onChange={handleChange}
-                value={newMoment.lastBetTime}
-                type="datetime-local"
-                name="lastBetTime"
-              />
-            </Control>
-          </Field>
-          <h1>Set an end time for this frame...</h1>
-          <br />
-          <form onSubmit={handleSubmit}>
-            <Field>
-              <Control>
-                <Input
-                  medium
-                  onChange={handleChange}
-                  value={newMoment.endTime}
-                  type="datetime-local"
-                  name="endTime"
-                />
-              </Control>
-            </Field>
-            <Button primary fullwidth>Create Frame</Button>
-          </form>
-        </Box>
+    <div className='section'>
+      <div className='columns is-centered'>
+        <div className='column is-8'>
+          <h1 className="heading sub-heading has-text-left">Create a New Frame</h1>
+          <div className='box'>
+            <form onSubmit={handleSubmit}>
+              <div className='field'>
+                <label className="label has-text-left">Frame Start Time</label>
+                <div className="control has-icons-left">
+                  <input
+                    className="input is-medium"
+                    type="datetime-local"
+                    placeholder="Group Name"
+                    onChange={handleChange}
+                    value={newMoment.lastBetTime}
+                    name="lastBetTime"
+                  />
+                  <span className="icon is-medium is-left">
+                    <i className="fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+              <div className='field'>
+                <label className="label has-text-left">Frame End Time</label>
+                <div className="control has-icons-left">
+                  <input
+                    className="input is-medium"
+                    type="datetime-local"
+                    placeholder="Group Name"
+                    onChange={handleChange}
+                    value={newMoment.endTime}
+                    name="lastBetTime"
+                  />
+                  <span className="icon is-medium is-left">
+                    <i className="fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+              <div className="control">
+                <button className="button is-primary is-fullwidth is-medium">Create Frame</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-
     </div>
   );
 };

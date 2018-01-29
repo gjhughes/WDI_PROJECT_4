@@ -1,1 +1,36 @@
+.groups-show-wrapper {
 
+  .bitcoin-box {
+    height: inherit;
+  }
+  .past-moments-box {
+    background-color: $color-light-primary;
+  }
+
+  .past-moments {
+    max-height: 325px;
+    overflow-y: scroll;
+  }
+  .sub-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-light-secondary;
+  }
+
+  .leaderboard-box {
+    .heading {
+      font-weight: 700;
+    }
+
+    .column {
+      padding: 1px 10px;
+      margin: 0;
+    }
+
+    hr {
+    margin: 10px;
+    }
+
+  }
+
+}
