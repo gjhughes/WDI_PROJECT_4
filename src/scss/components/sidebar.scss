@@ -1,5 +1,10 @@
-aside {
+@import './partials/sidebar/sidebar-logo';
+@import './partials/sidebar/sidebar-out';
+@import './partials/sidebar/sidebar-in';
+@import './partials/sidebar/sidebar-logout';
 
+aside {
+  padding: 30px 20px 30px 20px !important;
   min-height: 100vh;
   background-color: $color-dark-primary;
   font-size: 24px;

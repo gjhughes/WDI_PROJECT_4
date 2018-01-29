@@ -1,35 +1,56 @@
 import React from 'react';
-import { Box, Field, Input, Button } from 'reactBulma';
+import Select from 'react-select';
 
-const GroupsForm = ({ handleSubmit, handleChange, group }) => {
+const GroupsForm = ({ handleSubmit, handleChange, handleMultiSelect, group, options, currentUser }) => {
+  console.log('OPTIONS--->', options);
   return(
-    <div className="container">
-      <h1>Create New Group</h1>
-      <Box>
-        <form onSubmit={handleSubmit}>
-          <Field>
-            <Input
-              type="text"
-              name="groupName"
-              onChange={handleChange}
-              value={group.groupName}
-              placeholder="Group Name">
-            </Input>
-            <br />
-            <Input
-              type="text"
-              name="members"
-              onChange={handleChange}
-              value={group.members}
-              placeholder="Add members">
-            </Input>
-            <div className='container'>
-              <br />
-              <Button primary>Create Group</Button>
+    <div className='section'>
+      <div className='columns is-centered'>
+        <div className='column is-8 box register-box'>
+          <form onSubmit={handleSubmit}>
+
+            <div className='field'>
+              <div className="control has-icons-left">
+                <input
+                  className="input is-medium"
+                  type="text"
+                  placeholder="Group Name"
+                  onChange={handleChange}
+                  value={group.name}
+                  name="email"
+                />
+                <span className="icon is-medium is-left">
+                  <i className="fa fa-group"></i>
+                </span>
+              </div>
             </div>
-          </Field>
-        </form>
-      </Box>
+
+            {/* <div className='field'>
+              <div className='control has-icons-left'>
+                <div className='select is-fullwidth is-medium'>
+                  <select onChange={handleMultiSelect}>
+                    <option>Select users to add to your group</option>
+                    { users.map(user =>
+                      <option key={user.id} value={ user }>{ user.firstName }{' '}{ user.lastName }</option>
+                    )}
+                  </select>
+                </div>
+                <div className="icon is-small is-left">
+                  <i className="fa fa-user-plus"></i>
+                </div>
+              </div>
+            </div> */}
+
+            <Select
+              options={options}
+            />
+
+            <div className="control">
+              <button className="button is-primary is-fullwidth is-medium">Create Group</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

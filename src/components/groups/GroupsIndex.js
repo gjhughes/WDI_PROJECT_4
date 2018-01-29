@@ -1,12 +1,10 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Box, Button } from 'reactbulma';
 
 class GroupsIndex extends React.Component {
   state = {
-    groups: [],
-    members: []
+    groups: []
   }
 
   componentWillMount() {
@@ -20,53 +18,95 @@ class GroupsIndex extends React.Component {
 
   render() {
     return(
-      <div className='container'>
-        <h1 className="smallLogo">alpha<span className="bitcoin"><i className="fa fa-btc" aria-hidden="true"></i></span>et</h1>
-        <br />
-        <hr />
-        <Box>
-          <Link to={'/groups/new'}>
-            <Button primary fullwidth className="newBtn">Create a New Group</Button>
-          </Link>
-        </Box>
-        <hr />
 
-        <div className="container">
-          <div className="box">
-            <div className="columns is-multiline is-fullwidth">
-              {this.state.groups.map(group =>
-                <div className="column is-half has-text-centered" key={group.id}>
-                  <div className="box inner-box" key={group.id}>
-                    <h1 className="has-text-centered">{group.groupName}</h1>
-                    <small className="has-text-centered">Created by: {group.createdBy.firstName}{' '}{group.createdBy.lastName}</small>
-                    <hr />
-                    <div className="level">
-                      {group.members.map(member =>
-                        <div key={member.id}>
-                          <div className="level-item has-text-centered">
-                            <div >
-                              <small>{member.user.firstName}</small>
-                            </div>
-                          </div>
-                          <div className="level-item has-text-centered">
-                            <div >
-                              <small>{member.user.lastName}</small>
-                            </div>
+      <div className="section login-section">
+        <div className='columns is-centered'>
+          <div className="box wrapper-box has-text-centered column is-10">
+            <h1>All Groups</h1>
+            <br />
+
+            <div className='columns is-centered'>
+              { this.state.groups.map(group =>
+                <div  key={group.id} className='column is-6'>
+                  <Link to={`groups/${group.id}`}>
+                    <div className="box group-box">
+                      <small>{ group.groupName }</small>
+
+
+                      <div className='level is-mobile'>
+                        <div className='level-item has-text-centered'>
+                          <div>
+                            <p className="heading">1st</p>
+                            <p className="">Name</p>
                           </div>
                         </div>
-                      )}
+                        <div className='level-item has-text-centered'>
+                          <div>
+                            <p className='heading'>2nd</p>
+                            <p className=''>Name</p>
+                          </div>
+                        </div>
+                        <div className='level-item has-text-centered'>
+                          <div>
+                            <p className='heading'>3rd</p>
+                            <p className=''>Name</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className=''>
+                        <small>Number of past frames in this group: { group.moments.length }</small>
+                      </div>
+
                     </div>
-                    <Link to={`groups/${group.id}`}>
-                      <Button primary fullwidth className="show-btn">Show Group</Button>
-                    </Link>
-                  </div>
+                  </Link>
                 </div>
               )}
             </div>
           </div>
         </div>
-
       </div>
+
+
+
+
+
+
+      // <div className="container">
+      //   <div className="box">
+      //     <div className="columns is-multiline is-fullwidth">
+      //       {this.state.groups.map(group =>
+      //         <div className="column is-half has-text-centered" key={group.id}>
+      //           <div className="box inner-box" key={group.id}>
+      //             <h1 className="has-text-centered">{group.groupName}</h1>
+      //             <small className="has-text-centered">Created by: {group.createdBy.firstName}{' '}{group.createdBy.lastName}</small>
+      //             <hr />
+      //             <div className="level">
+      //               {group.members.map(member =>
+      //                 <div key={member.id}>
+      //                   <div className="level-item has-text-centered">
+      //                     <div >
+      //                       <small>{member.user.firstName}</small>
+      //                     </div>
+      //                   </div>
+      //                   <div className="level-item has-text-centered">
+      //                     <div >
+      //                       <small>{member.user.lastName}</small>
+      //                     </div>
+      //                   </div>
+      //                 </div>
+      //               )}
+      //             </div>
+      //             <Link to={`groups/${group.id}`}>
+      //               <Button primary fullwidth className="show-btn">Show Group</Button>
+      //             </Link>
+      //           </div>
+      //         </div>
+      //       )}
+      //     </div>
+      //   </div>
+      // </div>
+
 
     );
   }

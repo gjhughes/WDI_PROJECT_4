@@ -11,7 +11,7 @@ const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
           <br />
           <form onSubmit={handleSubmit}>
             <div className='field'>
-              <div className="control">
+              <div className="control has-icons-left">
                 <input
                   className="input is-medium"
                   type="text"
@@ -20,9 +20,12 @@ const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
                   value={user.email}
                   name="email"
                 />
+                <span className="icon is-medium is-left">
+                  <i className="fa fa-user-circle-o"></i>
+                </span>
               </div>
               <br />
-              <div className="control">
+              <div className="control has-icons-left">
                 <input
                   className="input is-medium"
                   type="password"
@@ -31,6 +34,9 @@ const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
                   value={user.password}
                   name="password"
                 />
+                <span className="icon is-medium is-left">
+                  <i className="fa fa-lock"></i>
+                </span>
               </div>
               <br />
               <div className="control">

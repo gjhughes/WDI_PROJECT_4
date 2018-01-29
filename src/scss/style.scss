@@ -1,12 +1,16 @@
 @import './_variables';
 
-/* Components */
-@import './components/sidebar';
-@import './components/home';
-
+/* Partials */
 @import './partials/login';
 @import './partials/buttons';
 
+/* Components */
+@import './components/sidebar';
+@import './components/home';
+@import './components/groups/groups-show';
+@import './components/groups/groups-index';
+
+/* Global Styles */
 * {
   box-sizing: border-box;
 }
@@ -24,4 +28,9 @@ section {
 
 li {
   list-style: none;
+}
+
+.wrapper-box {
+  background-color: $color-dark-primary;
+  border: 2px solid $color-accent;
 }

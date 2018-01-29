@@ -1,0 +1,5 @@
+Get all users
+Logged in user = createdBy
+createdBy = group member number 1
+Multiselect all users that are not the current logged in user
+On select, add the user to the group members array
