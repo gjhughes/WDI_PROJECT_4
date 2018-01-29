@@ -11,7 +11,7 @@ function createCron(endTime, groupId, momentId) {
       json: true
     })
       .then(response => {
-        
+
         const bpi = response[Object.keys(response)[3]];
         const gbp = bpi[Object.keys(bpi)[1]];
         const currentPrice = gbp[Object.keys(gbp)[4]];

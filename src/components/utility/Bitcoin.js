@@ -26,7 +26,6 @@ class Bitcoin extends React.Component{
   }
 
   render() {
-    console.log(this.state.bitcoin);
     return(
       <div>
         { this.state.bitcoin.price }
