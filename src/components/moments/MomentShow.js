@@ -3,31 +3,35 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 
+import Auth from '../../lib/Auth';
+
 class MomentShow extends React.Component{
   state ={
-    moment: {}
+    moment: {},
+    bets: [],
+    ids: []
   }
 
   componentDidMount() {
     Axios
       .get(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}`)
-      .then(res => this.setState({ moment: res.data }))
+      .then(res => this.setState({ moment: res.data, bets: res.data.bets, ids: res.data.bets.map(bet => bet.user.id) }))
       .catch(err => console.log(err));
   }
 
   render() {
+    const { userId } = Auth.getPayload();
     let frame = null;
     const now = new Date().toISOString();
     const start = this.state.moment.lastBetTime;
-    const bets = this.state.moment.bets;
-    console.log(bets);
+    const canBet = this.state.ids.includes(userId);
     if(start > now ) {
       frame =
       <div className='section'>
         <div className='columns is-centered'>
           <div className='column is-10'>
             <h1 className='heading sub-heading has-text-left'>Frame Pending</h1>
-            <div className="box wrapper-box">
+            <div className="box wrapper-box wrapper-box-one">
               <div className='columns mini-header'>
                 <div className='column is-6'>
                   <h1 className='heading has-text-left'>Start Time</h1>
@@ -53,31 +57,31 @@ class MomentShow extends React.Component{
             </div>
             <h1 className='heading sub-heading has-text-left'>Current Predictions</h1>
             <div className='box wrapper-box'>
-              <div className='box'>
+              <div className='box eaderboard-box'>
                 <div className="column is-12 level-item has-text-left">
                   <div className="is-fullwidth is-fullheight leaderboard-box">
                     <div className="columns level is-left">
                       <div className="column is-8 level-item">
-                        <small className="heading">Name</small>
+                        <small className="heading mini-header">Name</small>
                       </div>
                       <div className="column is-4 level-item">
-                        <small className="heading">Prediction</small>
+                        <small className="heading mini-header">Prediction</small>
                       </div>
                     </div>
 
                     <div className="columns is-level">
                       <div className='column is-8'>
-                        { bets.map(bet =>
+                        { this.state.bets.map(bet =>
                           <div key={bet.id}>
-                            <small >{bet.user.fullName}</small>
+                            <small className="small-item">{bet.user.fullName}</small>
                             <br />
                           </div>
                         )}
                       </div>
                       <div className="column is-4">
-                        { bets.map(bet =>
+                        { this.state.bets.map(bet =>
                           <div key={bet.id}>
-                            <small>£{ bet.prediction }</small>
+                            <small className="small-item">£{ bet.prediction }</small>
                             <br />
                           </div>
                         )}
@@ -87,14 +91,27 @@ class MomentShow extends React.Component{
                 </div>
               </div>
             </div>
-            <h1 className='heading sub-heading has-text-left'>Make Prediction</h1>
-            <div className='box wrapper-box'>
-              <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
-                <div className='box'>
-                  Yo
+            { canBet === false ?
+              <div>
+                <h1 className='heading sub-heading has-text-left'>Make Prediction</h1>
+                <div className='box wrapper-box'>
+                  <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
+                    <div className='box'>
+                      Yo
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
+              </div>
+              :
+              <div>
+                <h1 className='heading sub-heading has-text-left'>Prediction Made</h1>
+                <div className='box wrapper-box'>
+                  <div className='box'>
+                    Your prediction for this frame has been made
+                  </div>
+                </div>
+              </div>
+            }
           </div>
         </div>
       </div>;
@@ -104,7 +121,7 @@ class MomentShow extends React.Component{
           <div className='columns is-centered'>
             <div className='column is-10'>
               <h1 className='heading sub-heading has-text-left'>In Progress!!</h1>
-              <div className="box wrapper-box">
+              <div className="box wrapper-box wrapper-box-one">
                 <div className='columns mini-header'>
                   <div className='column is-6'>
                     <h1 className='heading has-text-left'>Start Time</h1>

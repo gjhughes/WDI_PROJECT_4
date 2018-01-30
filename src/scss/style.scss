@@ -9,6 +9,7 @@
 @import './components/home';
 @import './components/groups/groups-show';
 @import './components/groups/groups-index';
+@import './components/moments/moments-show';
 
 /* Global Styles */
 * {
@@ -43,4 +44,14 @@ li {
 
 .section {
   padding-top: 18px;
+}
+
+.mini-header {
+  color: $color-light-secondary;
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper-box-one {
+  padding-top: 0;
 }

@@ -51,7 +51,6 @@ class GroupsShow extends React.Component{
     const pastMoments = this.state.moments.filter(moment => moment.endTime < now);
     const pending = this.state.moments.filter(moment => moment.lastBetTime > now);
     const inProgress = this.state.moments.filter(moment => moment.endTime > now && moment.lastBetTime < now);
-    console.log(inProgress);
     let frame = null;
     if (inProgress.length < 1 && pending.length < 1) {
       frame =
@@ -87,7 +86,7 @@ class GroupsShow extends React.Component{
           <div className='columns is-centered'>
             <div className='column is-10'>
               <h1 className="heading sub-heading has-text-left">{ this.state.group.groupName }</h1>
-              <div className="box wrapper-box">
+              <div className="box wrapper-box wrapper-box-one">
 
                 <div className='columns mini-header'>
                   <div className='column is-4'>
