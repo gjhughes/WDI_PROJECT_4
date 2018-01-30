@@ -1,4 +1,10 @@
+
 .groups-show-wrapper {
+
+  .timer-div {
+    background-color: red;
+  }
+
 
   .mini-header {
     color: $color-light-secondary;
@@ -18,7 +24,7 @@
   }
 
   .past-moments {
-    max-height: 325px;
+    max-height: 350px;
     overflow-y: scroll;
   }
 

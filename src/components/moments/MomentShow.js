@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import ReactMomentCountDown from 'react-moment-countdown';
 
 import Auth from '../../lib/Auth';
 
@@ -25,7 +26,7 @@ class MomentShow extends React.Component{
     const now = new Date().toISOString();
     const start = this.state.moment.lastBetTime;
     const canBet = this.state.ids.includes(userId);
-    console.log(this.state.bets);
+    const toDate = this.state.moment.endTime;
 
     if(start > now ) {
       frame =
@@ -122,7 +123,7 @@ class MomentShow extends React.Component{
         <div className='section'>
           <div className='columns is-centered'>
             <div className='column is-10'>
-              <h1 className='heading sub-heading has-text-left'>Frame In Progress</h1>
+              <h1 className='heading sub-heading has-text-left'>About This Frame</h1>
               <div className="box wrapper-box wrapper-box-one">
                 <div className='columns mini-header'>
                   <div className='column is-6'>
@@ -147,7 +148,7 @@ class MomentShow extends React.Component{
                   </div>
                 </div>
               </div>
-              <h1 className='heading sub-heading has-text-left'>Current Predictions</h1>
+              <h1 className='heading sub-heading has-text-left'>Predictions</h1>
               <div className='box wrapper-box'>
                 <div className='box'>
                   {
@@ -186,21 +187,20 @@ class MomentShow extends React.Component{
                       </div>
                   }
                 </div>
+
               </div>
-              <h1 className='heading sub-heading has-text-left'>Make Prediction</h1>
+              <h1 className='heading sub-heading has-text-left'>Time Remaining</h1>
               <div className='box wrapper-box'>
-                <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
-                  <div className='box'>
-                    Yo
-                  </div>
-                </Link>
+                <div className='box timer-div'>
+                  <ReactMomentCountDown toDate={toDate} />
+                </div>
               </div>
             </div>
           </div>
         </div>;
     }
     return(
-      <div>
+      <div className="moments-wrapper">
         { frame }
       </div>
     );

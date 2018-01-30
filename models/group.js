@@ -14,7 +14,8 @@ const momentSchema = new mongoose.Schema(
       tmee: { type: Date }
     }],
     endPrice: { type: Number },
-    bets: [ betSchema ]
+    bets: [ betSchema ],
+    winner: { type: mongoose.Schema.ObjectId, ref: 'User' }
   }
 );
 

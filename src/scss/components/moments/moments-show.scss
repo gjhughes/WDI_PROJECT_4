@@ -1,16 +1,26 @@
-.leaderboard-box {
+.moments-wrapper {
+  .leaderboard-box {
 
-  .small-item {
-    font-size: 16px;
+    .small-item {
+      font-size: 16px;
+    }
+
+    .heading {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .column {
+      padding: 1px 10px;
+      margin: 0;
+    }
   }
 
-  .heading {
-    font-weight: 700;
-    font-size: 14px;
-  }
+  .timer-div {
+    background-color: $color-accent;
+    color: $color-dark-primary;
+    font-size: 30px;
+    font-weight: 800;
 
-  .column {
-    padding: 1px 10px;
-    margin: 0;
-  }
+  }  
 }

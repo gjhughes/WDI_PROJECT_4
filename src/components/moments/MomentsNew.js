@@ -11,7 +11,7 @@ class MomentsNew extends React.Component{
       lastBetTime: ''
     }
   }
- 
+
   componentWillMount() {
     Axios
       .get(`/api/groups/${this.props.match.params.id}`)
@@ -35,7 +35,7 @@ class MomentsNew extends React.Component{
 
   render() {
     return(
-      <div className='container'>
+      <div>
         <MomentsForm
           newMoment={this.state.newMoment}
           handleSubmit={this.handleSubmit}

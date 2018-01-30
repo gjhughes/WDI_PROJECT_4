@@ -29,6 +29,7 @@ function createCron(endTime, groupId, momentId) {
                 const user = group.members.find(member => member.user.equals(bet.user));
                 user.points += i * 5;
               });
+            
             return group.save();
           });
       });

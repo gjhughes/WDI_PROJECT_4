@@ -61,7 +61,7 @@ class GroupsShow extends React.Component{
             <div className='box wrapper-box'>
               <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
                 <div className='box'>
-                  <small>This frame will bengin on <Moment format="ddd DD MMMM YYYY">{ frame.lastBetTime }</Moment> at <Moment format="HH:mm">{frame.lastBetTime}</Moment>.  Click here to make your prediction.</small>
+                  <small>This frame will begin on <Moment format="ddd DD MMMM YYYY">{ frame.lastBetTime }</Moment> at <Moment format="HH:mm">{frame.lastBetTime}</Moment>.  Click here to make your prediction.</small>
                 </div>
               </Link>
             </div>
@@ -101,7 +101,7 @@ class GroupsShow extends React.Component{
         }
       </div>;
     }
-
+    console.log(pastMoments);
     return(
       <div className="groups-show-wrapper">
         <div className='section'>
@@ -185,9 +185,18 @@ class GroupsShow extends React.Component{
                 <div className="box wrapper-box past-moments">
                   <div className='columns'>
                     <div className='column'>
-                      { pastMoments.map(moment =>
-                        <div key={moment.id} className='box past-moments-box'>
-                          { moment.id }
+                      { pastMoments.map(frame =>
+                        <div key={frame.id} className='box past-moments-box'>
+                          <div className='columns is-level is-centered'>
+                            <div className='column is-4'>
+                              <small className="heading">End Time</small>
+                              <small><Moment format="DD/MM/YY HH:mm">{ frame.endTime }</Moment></small>
+                            </div>
+                            <div className='column is-4'>
+                              <small className="heading">End Price</small>
+                              <small className="heading">£{ frame.endPrice }</small>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </div>
