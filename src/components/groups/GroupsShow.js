@@ -49,7 +49,49 @@ class GroupsShow extends React.Component{
     const now = new Date().toISOString();
     const pastMoments = this.state.moments.filter(moment => moment.endTime < now);
     const pending = this.state.moments.filter(moment => moment.lastBetTime > now);
+    const inProgress = this.state.moments.filter(moment => moment.lastBetTIme < now && moment.endTime > now);
+    let frame = null;
+    console.log(inProgress);
     console.log(pending);
+    if (inProgress.length < 1 && pending.length < 1) {
+      frame =
+        <div>
+          <h1 className='heading has-text-left sub-heading'>
+            Create New Fame
+          </h1>
+          <div className='box wrapper-box'>
+            <div className='box'>
+              <p>No Frames</p>
+              <button>Create Frame</button>
+            </div>
+          </div>
+        </div>;
+    } else if (inProgress.length < 1 && pending.length > 0) {
+      frame =
+        <div>
+          <h1 className='heading has-text-left sub-heading'>
+            Frame Pending
+          </h1>
+          <div className='box wrapper-box'>
+            <div className='box'>
+              <p>Pending Frame</p>
+              <button>Make Prediction</button>
+            </div>
+          </div>
+        </div>;
+    } else {
+      frame =
+      <div>
+        <h1 className='heading has-text-left sub-heading'>
+          Frame in Progress
+        </h1>
+        <div className='box wrapper-box'>
+          <div className='box'>
+            <p>In Progress</p>
+          </div>
+        </div>
+      </div>;
+    }
     return(
       <div className="groups-show-wrapper">
         <div className='section'>
@@ -62,11 +104,10 @@ class GroupsShow extends React.Component{
                   <div className='column is-4'>
                     <h1 className='heading has-text-left'>Current Price</h1>
                   </div>
-                  <div className='column is-8 has-text-left'>
-                    <h1 className='heading'>Current Leaderboard</h1>
+                  <div className='column is-8'>
+                    <h1 className='heading has-text-left'>Current Leaderboard</h1>
                   </div>
                 </div>
-
 
                 <div className="tile is-ancestor">
                   <div className="tile is-parent">
@@ -129,27 +170,20 @@ class GroupsShow extends React.Component{
                   </div>
                 </div>
               </div>
-              <h1 className="heading has-text-left sub-heading">Upcoming Frame</h1>
-              <div className="box wrapper-box">
-                <div className='box'>
-                  {
-                    pending.map(moment =>
-                      <div key={moment.id}>
-                        <h1>End: { moment.endTime }</h1>
-                        <h1>Last Bet: { moment.lastBetTime }</h1>
-                      </div>
-                    )}
-                </div>
-              </div>
-              <h1 className="heading has-text-left sub-heading">Previous Frames</h1>
-              <div className="box wrapper-box past-moments">
-                <div className='columns'>
-                  <div className='column'>
-                    { pastMoments.map(moment =>
-                      <div key={moment.id} className='box past-moments-box'>
-                        { moment.id }
-                      </div>
-                    )}
+
+                { frame }
+            
+              <div>
+                <h1 className="heading has-text-left sub-heading">Previous Frames</h1>
+                <div className="box wrapper-box past-moments">
+                  <div className='columns'>
+                    <div className='column'>
+                      { pastMoments.map(moment =>
+                        <div key={moment.id} className='box past-moments-box'>
+                          { moment.id }
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
