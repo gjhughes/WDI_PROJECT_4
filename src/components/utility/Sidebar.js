@@ -41,7 +41,7 @@ const Sidebar = ({ history }) => {
             <li>
               <Link to="/groups/new">
                 <i className="fa fa-plus"></i><br />
-                <p>Create Group</p>
+                <p>New Group</p>
               </Link>
             </li>
             <li>

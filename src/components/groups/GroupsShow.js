@@ -110,20 +110,20 @@ class GroupsShow extends React.Component{
               <h1 className="heading sub-heading has-text-left">{ this.state.group.groupName }</h1>
               <div className="box wrapper-box wrapper-box-one">
                 <div className='columns mini-header'>
-                  <div className='column is-4'>
+                  <div className='column is-4 about-moment'>
                     <h1 className='heading has-text-left'>Current Price</h1>
                   </div>
                   <div className='column is-8'>
-                    <h1 className='heading has-text-left'>Current Leaderboard</h1>
+                    <h1 className='heading has-text-left about-moment'>Current Leaderboard</h1>
                   </div>
                 </div>
                 <div className="tile is-ancestor">
-                  <div className="tile is-parent">
+                  <div className="tile is-parent about-box">
                     <article className="tile is-child box">
                       <Bitcoin />
                     </article>
                   </div>
-                  <div className="tile is-parent is-8">
+                  <div className="tile is-parent is-8 about-box">
                     <article className="tile is-child box">
                       <div className="column is-12 level-item has-text-left">
                         <div className="is-fullwidth is-fullheight leaderboard-box">

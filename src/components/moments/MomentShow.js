@@ -36,10 +36,10 @@ class MomentShow extends React.Component{
             <h1 className='heading sub-heading has-text-left'>Frame Pending</h1>
             <div className="box wrapper-box wrapper-box-one">
               <div className='columns mini-header'>
-                <div className='column is-6'>
+                <div className='column is-6 about-moment'>
                   <h1 className='heading has-text-left'>Start Time</h1>
                 </div>
-                <div className='column is-6'>
+                <div className='column is-6 about-moment'>
                   <h1 className='heading has-text-left'>End Time</h1>
                 </div>
               </div>
@@ -126,21 +126,21 @@ class MomentShow extends React.Component{
               <h1 className='heading sub-heading has-text-left'>About This Frame</h1>
               <div className="box wrapper-box wrapper-box-one">
                 <div className='columns mini-header'>
-                  <div className='column is-6'>
+                  <div className='column is-6 about-moment'>
                     <h1 className='heading has-text-left'>Start Time</h1>
                   </div>
-                  <div className='column is-6'>
+                  <div className='column is-6 about-moment'>
                     <h1 className='heading has-text-left'>End Time</h1>
                   </div>
                 </div>
                 <div className="tile is-ancestor">
-                  <div className="tile is-parent">
+                  <div className="tile is-parent about-box">
                     <article className="tile is-child box">
                       <Moment format="dddd DD MMMM YYYY">{ this.state.moment.lastBetTime }</Moment><br />
                       <Moment format="HH:mm:ss">{ this.state.moment.lastBetTime }</Moment>
                     </article>
                   </div>
-                  <div className="tile is-parent">
+                  <div className="tile is-parent about-box">
                     <article className="tile is-child box">
                       <Moment format="dddd DD MMMM YYYY">{ this.state.moment.endTime }</Moment><br />
                       <Moment format="HH:mm:ss">{ this.state.moment.endTime }</Moment>

@@ -4,19 +4,22 @@ import { Link } from 'react-router-dom';
 
 class GroupsIndex extends React.Component {
   state = {
-    groups: []
+    groups: [],
+    members: []
   }
 
   componentWillMount() {
     Axios
       .get('/api/groups')
       .then(res => {
-        this.setState({ groups: res.data });
+        this.setState({ groups: res.data  });
       })
       .catch(err => console.log(err));
   }
 
   render() {
+
+    console.log(this.state.members);
     return(
       <div className="">
         <div className='section'>
@@ -25,31 +28,31 @@ class GroupsIndex extends React.Component {
               <h1 className="heading sub-heading has-text-left">All Groups</h1>
               <div className="box wrapper-box">
                 <div className='columns is-centered'>
-                  { this.state.groups.map(group =>
+                  { this.state.groups && this.state.groups.map(group =>
                     <div key={group.id} className='column is-6'>
                       <Link to={`groups/${group.id}`}>
                         <div className="box group-box">
-                          <small>{ group.groupName }</small>
-                          <div className='level is-mobile'>
-                            <div className='level-item has-text-centered'>
-                              <div>
-                                <p className="heading">1st</p>
-                                <p className="">Name</p>
-                              </div>
-                            </div>
-                            <div className='level-item has-text-centered'>
-                              <div>
-                                <p className='heading'>2nd</p>
-                                <p className=''>Name</p>
-                              </div>
-                            </div>
-                            <div className='level-item has-text-centered'>
-                              <div>
-                                <p className='heading'>3rd</p>
-                                <p className=''>Name</p>
-                              </div>
-                            </div>
+                          <small className="heading group-name">{ group.groupName }</small>
+                          <hr />
+                          <div className='columns is-centered'>
+                            <div className='column is-10'>Group Members</div>
                           </div>
+                          <div className='columns'>
+                            { group.members.map(member =>
+                              <div key={member.id} className='column is-4'>
+                                <small>{member.user.fullName}</small>
+                              </div>
+                            )}
+                          </div>
+
+
+
+
+
+
+
+
+
 
                           <div className=''>
                             <small>Number of past frames in this group: { group.moments.length }</small>
