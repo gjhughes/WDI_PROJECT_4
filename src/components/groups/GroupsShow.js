@@ -52,34 +52,56 @@ class GroupsShow extends React.Component{
     const pending = this.state.moments.filter(moment => moment.lastBetTime > now);
     const inProgress = this.state.moments.filter(moment => moment.endTime > now && moment.lastBetTime < now);
     let frame = null;
-    if (inProgress.length < 1 && pending.length < 1) {
-      frame =
-        <div>
-          <h1 className='heading has-text-left sub-heading'>
-            Create New Fame
-          </h1>
-          <div className='box wrapper-box'>
-            <div className='box'>
-              <p>No Frames</p>
-              <button>Create Frame</button>
-            </div>
-          </div>
-        </div>;
-    } else if (inProgress.length < 1 && pending.length > 0) {
-      frame = null;
-    } else if (inProgress.length === 1 && pending.length === 0) {
+    if(pending.length !== 0) {
       frame =
       <div>
-        <h1 className='heading has-text-left sub-heading'>
-          Frame in Progress
-        </h1>
-        <div className='box wrapper-box'>
-          <div className='box'>
-            <p>In Progress</p>
+        { pending.map(frame =>
+          <div key={frame.id}>
+            <h1 className='heading has-text-left sub-heading'>Next Frame</h1>
+            <div className='box wrapper-box'>
+              <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
+                <div className='box'>
+                  <small>This frame will bengin on <Moment format="ddd DD MMMM YYYY">{ frame.lastBetTime }</Moment> at <Moment format="HH:mm">{frame.lastBetTime}</Moment>.  Click here to make your prediction.</small>
+                </div>
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>;
+    } else if(inProgress.length !== 0) {
+      frame =
+      <div>
+        { inProgress.map(frame =>
+          <div key={frame.id}>
+            <h1 className='heading has-text-left sub-heading'>In Progress</h1>
+            <div className='box wrapper-box'>
+              <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
+                <div className='box'>
+                  View This Frame
+                </div>
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>;
+    } else if(pending.length === 0 && inProgress.length === 0) {
+      frame =
+      <div>
+        { inProgress.length === 0 && pending.length === 0 &&
+        <div>
+          <h1 className='heading has-text-left sub-heading'>Create a Frame</h1>
+          <div className='box wrapper-box'>
+            <Link to={`/groups/${this.props.match.params.id}/moments/new`}>
+              <div className='box'>
+                There are now active frames in this group.  Click here to create one.
+              </div>
+            </Link>
           </div>
         </div>
+        }
       </div>;
     }
+
     return(
       <div className="groups-show-wrapper">
         <div className='section'>
@@ -87,7 +109,6 @@ class GroupsShow extends React.Component{
             <div className='column is-10'>
               <h1 className="heading sub-heading has-text-left">{ this.state.group.groupName }</h1>
               <div className="box wrapper-box wrapper-box-one">
-
                 <div className='columns mini-header'>
                   <div className='column is-4'>
                     <h1 className='heading has-text-left'>Current Price</h1>
@@ -96,7 +117,6 @@ class GroupsShow extends React.Component{
                     <h1 className='heading has-text-left'>Current Leaderboard</h1>
                   </div>
                 </div>
-
                 <div className="tile is-ancestor">
                   <div className="tile is-parent">
                     <article className="tile is-child box">
@@ -118,7 +138,6 @@ class GroupsShow extends React.Component{
                               <small className="heading">Score</small>
                             </div>
                           </div>
-
                           <div className="columns is-level">
                             <div className="column is-3">
                               <small>1</small>
@@ -159,33 +178,7 @@ class GroupsShow extends React.Component{
                 </div>
               </div>
               <div>
-                {
-                  pending.map(frame =>
-                    <div key={frame.id}>
-                      <h1 className='heading has-text-left sub-heading'>Next Frame</h1>
-                      <div className='box wrapper-box'>
-                        <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
-                          <div className='box'>
-                            View This Frame
-                          </div>
-                        </Link>
-
-                      </div>
-                    </div>
-                  )}
-                {
-                  inProgress.map(frame =>
-                    <div key={frame.id}>
-                      <h1 className='heading has-text-left sub-heading'>In Progress</h1>
-                      <div className='box wrapper-box'>
-                        <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
-                          <div className='box'>
-                            View This Frame
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
+                { frame }
               </div>
               <div>
                 <h1 className="heading has-text-left sub-heading">Previous Frames</h1>

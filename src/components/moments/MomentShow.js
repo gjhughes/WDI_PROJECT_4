@@ -25,6 +25,8 @@ class MomentShow extends React.Component{
     const now = new Date().toISOString();
     const start = this.state.moment.lastBetTime;
     const canBet = this.state.ids.includes(userId);
+    console.log(this.state.bets);
+
     if(start > now ) {
       frame =
       <div className='section'>
@@ -57,15 +59,15 @@ class MomentShow extends React.Component{
             </div>
             <h1 className='heading sub-heading has-text-left'>Current Predictions</h1>
             <div className='box wrapper-box'>
-              <div className='box eaderboard-box'>
+              <div className='box leaderboard-box'>
                 <div className="column is-12 level-item has-text-left">
                   <div className="is-fullwidth is-fullheight leaderboard-box">
                     <div className="columns level is-left">
                       <div className="column is-8 level-item">
-                        <small className="heading mini-header">Name</small>
+                        <small className="heading">Name</small>
                       </div>
                       <div className="column is-4 level-item">
-                        <small className="heading mini-header">Prediction</small>
+                        <small className="heading">Prediction</small>
                       </div>
                     </div>
 
@@ -120,7 +122,7 @@ class MomentShow extends React.Component{
         <div className='section'>
           <div className='columns is-centered'>
             <div className='column is-10'>
-              <h1 className='heading sub-heading has-text-left'>In Progress!!</h1>
+              <h1 className='heading sub-heading has-text-left'>Frame In Progress</h1>
               <div className="box wrapper-box wrapper-box-one">
                 <div className='columns mini-header'>
                   <div className='column is-6'>
@@ -133,12 +135,14 @@ class MomentShow extends React.Component{
                 <div className="tile is-ancestor">
                   <div className="tile is-parent">
                     <article className="tile is-child box">
-                      { this.state.moment.lastBetTime }
+                      <Moment format="dddd DD MMMM YYYY">{ this.state.moment.lastBetTime }</Moment><br />
+                      <Moment format="HH:mm:ss">{ this.state.moment.lastBetTime }</Moment>
                     </article>
                   </div>
                   <div className="tile is-parent">
                     <article className="tile is-child box">
-                      { this.state.moment.endTime }
+                      <Moment format="dddd DD MMMM YYYY">{ this.state.moment.endTime }</Moment><br />
+                      <Moment format="HH:mm:ss">{ this.state.moment.endTime }</Moment>
                     </article>
                   </div>
                 </div>
@@ -146,7 +150,41 @@ class MomentShow extends React.Component{
               <h1 className='heading sub-heading has-text-left'>Current Predictions</h1>
               <div className='box wrapper-box'>
                 <div className='box'>
-                  Yo
+                  {
+                    this.state.bets.length === 0 ? <small>There are no predictions for this frame</small>
+                      :
+                      <div className="column is-12 level-item has-text-left">
+                        <div className="is-fullwidth is-fullheight leaderboard-box">
+                          <div className="columns level is-left">
+                            <div className="column is-8 level-item">
+                              <small className="heading">Name</small>
+                            </div>
+                            <div className="column is-4 level-item">
+                              <small className="heading">Prediction</small>
+                            </div>
+                          </div>
+
+                          <div className="columns is-level">
+                            <div className='column is-8'>
+                              { this.state.bets.map(bet =>
+                                <div key={bet.id}>
+                                  <small className="small-item">{bet.user.fullName}</small>
+                                  <br />
+                                </div>
+                              )}
+                            </div>
+                            <div className="column is-4">
+                              { this.state.bets.map(bet =>
+                                <div key={bet.id}>
+                                  <small className="small-item">£{ bet.prediction }</small>
+                                  <br />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  }
                 </div>
               </div>
               <h1 className='heading sub-heading has-text-left'>Make Prediction</h1>
