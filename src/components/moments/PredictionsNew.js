@@ -1,7 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
 
-
 import Auth from '../../lib/Auth';
 import PredictionsForm from './PredictionsForm';
 
@@ -17,10 +16,7 @@ class PredictionsNew extends React.Component{
   componentDidMount() {
     Axios
       .get(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}`)
-      .then(res => {
-        console.log('moment', res.data);
-        this.setState({ moment: res.data });
-      })
+      .then(res => this.setState({ moment: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -31,14 +27,17 @@ class PredictionsNew extends React.Component{
       .put(`/api/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bets`, this.state.newBet, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
       })
-      .then(() => this.props.history.push(`/groups/${this.props.match.params.id}`))
-      .catch(err => console.log(err));
+      .then(() => this.props.history.push(`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}`))
+      .catch(err => console.log(err));  
   }
 
   handleChange = ({ target: { name, value }}) => {
-    const newBet = Object.assign({}, this.state.newBet, { [name]: value });
-    this.setState({ newBet });
-    console.log(newBet);
+    if (Auth.getPayload()) {
+      const { userId } = Auth.getPayload();
+      const newBet = Object.assign({}, this.state.newBet, { user: userId, [name]: value });
+      this.setState({ newBet });
+      console.log(newBet);
+    }
   }
 
   render() {

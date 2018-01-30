@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
 import Bitcoin from '../utility/Bitcoin';
 
@@ -49,10 +50,9 @@ class GroupsShow extends React.Component{
     const now = new Date().toISOString();
     const pastMoments = this.state.moments.filter(moment => moment.endTime < now);
     const pending = this.state.moments.filter(moment => moment.lastBetTime > now);
-    const inProgress = this.state.moments.filter(moment => moment.lastBetTIme < now && moment.endTime > now);
-    let frame = null;
+    const inProgress = this.state.moments.filter(moment => moment.endTime > now && moment.lastBetTime < now);
     console.log(inProgress);
-    console.log(pending);
+    let frame = null;
     if (inProgress.length < 1 && pending.length < 1) {
       frame =
         <div>
@@ -67,19 +67,8 @@ class GroupsShow extends React.Component{
           </div>
         </div>;
     } else if (inProgress.length < 1 && pending.length > 0) {
-      frame =
-        <div>
-          <h1 className='heading has-text-left sub-heading'>
-            Frame Pending
-          </h1>
-          <div className='box wrapper-box'>
-            <div className='box'>
-              <p>Pending Frame</p>
-              <button>Make Prediction</button>
-            </div>
-          </div>
-        </div>;
-    } else {
+      frame = null;
+    } else if (inProgress.length === 1 && pending.length === 0) {
       frame =
       <div>
         <h1 className='heading has-text-left sub-heading'>
@@ -170,9 +159,35 @@ class GroupsShow extends React.Component{
                   </div>
                 </div>
               </div>
+              <div>
+                {
+                  pending.map(frame =>
+                    <div key={frame.id}>
+                      <h1 className='heading has-text-left sub-heading'>Next Frame</h1>
+                      <div className='box wrapper-box'>
+                        <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
+                          <div className='box'>
+                            View This Frame
+                          </div>
+                        </Link>
 
-                { frame }
-            
+                      </div>
+                    </div>
+                  )}
+                {
+                  inProgress.map(frame =>
+                    <div key={frame.id}>
+                      <h1 className='heading has-text-left sub-heading'>In Progress</h1>
+                      <div className='box wrapper-box'>
+                        <Link to={`/groups/${this.props.match.params.id}/moments/${frame.id}`}>
+                          <div className='box'>
+                            View This Frame
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+              </div>
               <div>
                 <h1 className="heading has-text-left sub-heading">Previous Frames</h1>
                 <div className="box wrapper-box past-moments">
