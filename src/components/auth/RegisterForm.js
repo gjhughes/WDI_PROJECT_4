@@ -4,7 +4,7 @@ const RegisterForm = ({ handleSubmit, handleChange, user }) => {
   return(
     <div className='section'>
       <div className='columns is-centered'>
-        <div className='column is-8 box register-box'>
+        <div className='column is-8 box login-section'>
           <br />
           <h1>Register</h1>
           <br />

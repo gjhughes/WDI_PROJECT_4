@@ -1,5 +1,10 @@
 .login-section {
 
+  h1 {
+    font-size: 24px;
+    color: $color-primary;
+  }
+
   .login-box {
     background-color: $color-light-secondary !important;
 

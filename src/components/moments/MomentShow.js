@@ -44,13 +44,13 @@ class MomentShow extends React.Component{
                 </div>
               </div>
               <div className="tile is-ancestor">
-                <div className="tile is-parent">
+                <div className="tile is-parent about-box">
                   <article className="tile is-child box">
                     <Moment format="dddd DD MMMM YYYY">{ this.state.moment.lastBetTime }</Moment><br />
                     <Moment format="HH:mm:ss">{ this.state.moment.lastBetTime }</Moment>
                   </article>
                 </div>
-                <div className="tile is-parent">
+                <div className="tile is-parent about-box">
                   <article className="tile is-child box">
                     <Moment format="dddd DD MMMM YYYY">{ this.state.moment.endTime }</Moment><br />
                     <Moment format="HH:mm:ss">{ this.state.moment.endTime }</Moment>
@@ -100,7 +100,7 @@ class MomentShow extends React.Component{
                 <div className='box wrapper-box'>
                   <Link to={`/groups/${this.props.match.params.id}/moments/${this.props.match.params.momentId}/bet`}>
                     <div className='box'>
-                      Yo
+                      Make your prediction for this frame.
                     </div>
                   </Link>
                 </div>

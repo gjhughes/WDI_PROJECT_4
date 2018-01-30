@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
+const LoginForm = ({ handleSubmit, handleChange, user }) => {
   return(
     <div className="section login-section">
       <div className='columns is-centered'>
@@ -44,8 +43,6 @@ const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
               </div>
             </div>
           </form>
-          <hr />
-          <h3>New to alpha<i className="fa fa-btc" aria-hidden="true"></i>et? <Link to="/register" className="register">Sign Up</Link></h3>
         </div>
       </div>
     </div>
@@ -53,4 +50,4 @@ const LoginForm2 = ({ handleSubmit, handleChange, user }) => {
   );
 };
 
-export default LoginForm2;
+export default LoginForm;

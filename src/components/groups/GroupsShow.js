@@ -93,7 +93,7 @@ class GroupsShow extends React.Component{
           <div className='box wrapper-box'>
             <Link to={`/groups/${this.props.match.params.id}/moments/new`}>
               <div className='box'>
-                There are now active frames in this group.  Click here to create one.
+                There are no active frames in this group.  Click here to create one.
               </div>
             </Link>
           </div>
