@@ -65,7 +65,6 @@ Below is the cron job that handles retrieving the end price each frame:
 
 function createCron(endTime, groupId, momentId) {
   return new CronJob(new Date(endTime), function() {
-    console.log('End Price Cron Fired');
     return rp({
       uri: 'https://api.coindesk.com/v1/bpi/currentprice.json',
       json: true

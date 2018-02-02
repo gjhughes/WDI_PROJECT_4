@@ -12,7 +12,6 @@ const bodyParser           = require('body-parser');
 const router               = require('./config/routes');
 const errorHandler         = require('./lib/errorHandler');
 const customResponses      = require('./lib/customResponses');
-const priceTracker         = require('./lib/priceTracker');
 const { port, dbURI, env } = require('./config/environment');
 
 mongoose.connect(dbURI, { useMongoClient: true });
@@ -27,9 +26,7 @@ app.use('/api', router);
 app.use(customResponses);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
-
 app.use(errorHandler);
-
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
 

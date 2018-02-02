@@ -2,40 +2,46 @@ const Group = require('../models/group');
 const CronJob = require('cron').CronJob;
 const rp = require('request-promise');
 
-
 function createCron(endTime, groupId, momentId) {
-  return new CronJob(new Date(endTime), function() {
-    console.log('End Price Cron Fired');
-    return rp({
-      uri: 'https://api.coindesk.com/v1/bpi/currentprice.json',
-      json: true
-    })
-      .then(response => {
-
+  return new CronJob(
+    new Date(endTime),
+    function() {
+      return rp({
+        uri: 'https://api.coindesk.com/v1/bpi/currentprice.json',
+        json: true
+      }).then(response => {
+        
         const bpi = response[Object.keys(response)[3]];
         const gbp = bpi[Object.keys(bpi)[1]];
         const currentPrice = gbp[Object.keys(gbp)[4]];
 
-        return Group
-          .findById(groupId)
+        return Group.findById(groupId)
           .exec()
           .then(group => {
             const moment = group.moments.id(momentId);
 
             moment.endPrice = currentPrice;
 
-            moment.bets.sort((a, b) => Math.abs(currentPrice - b.prediction) - Math.abs(currentPrice - a.prediction))
+            moment.bets
+              .sort(
+                (a, b) =>
+                  Math.abs(currentPrice - b.prediction) -
+                  Math.abs(currentPrice - a.prediction)
+              )
               .forEach((bet, i) => {
-                const user = group.members.find(member => member.user.equals(bet.user));
+                const user = group.members.find(member =>
+                  member.user.equals(bet.user)
+                );
                 user.points += i * 5;
               });
-            
+
             return group.save();
           });
       });
-  },
-  false,
-  'Europe/London');
+    },
+    false,
+    'Europe/London'
+  );
 }
 
 function momentCreate(req, res, next) {
@@ -127,6 +133,6 @@ function momentDelete(req, res, next) {
 module.exports = {
   show: momentShow,
   create: momentCreate,
-  delete: momentDelete
+  delete: momentDelete,
   // getData: getData
 };
