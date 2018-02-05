@@ -1,8 +1,7 @@
-import React     from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from '../statics/Login';
-// import Login from '../auth/Login';
 import HomeRegister from '../statics/Register';
 
 import GroupsIndex from '../groups/GroupsIndex';

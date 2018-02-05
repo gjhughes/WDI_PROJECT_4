@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'Axios';
+import Axios from 'axios';
 
 class Bitcoin extends React.Component{
   state = {

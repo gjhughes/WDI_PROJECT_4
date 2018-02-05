@@ -10,7 +10,7 @@ function createCron(endTime, groupId, momentId) {
         uri: 'https://api.coindesk.com/v1/bpi/currentprice.json',
         json: true
       }).then(response => {
-        
+
         const bpi = response[Object.keys(response)[3]];
         const gbp = bpi[Object.keys(bpi)[1]];
         const currentPrice = gbp[Object.keys(gbp)[4]];
@@ -133,6 +133,6 @@ function momentDelete(req, res, next) {
 module.exports = {
   show: momentShow,
   create: momentCreate,
-  delete: momentDelete,
+  delete: momentDelete
   // getData: getData
 };
