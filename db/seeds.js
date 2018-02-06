@@ -55,6 +55,24 @@ mongoose
             points: 0
           }
         ]
+      },
+      {
+        createdBy: users[0],
+        groupName: 'Betting on Bitcoin 2',
+        members: [
+          {
+            user: users[0],
+            points: 0
+          },
+          {
+            user: users[1],
+            points: 0
+          },
+          {
+            user: users[2],
+            points: 0
+          }
+        ]
       }
     ]);
   })
