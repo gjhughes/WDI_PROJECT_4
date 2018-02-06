@@ -41,7 +41,7 @@ mongoose
       {
         createdBy: users[0],
         groupName: 'Betting on Bitcoin',
-        memebers: [
+        members: [
           {
             user: users[0],
             points: 0
