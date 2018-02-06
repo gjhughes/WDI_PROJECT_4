@@ -1,8 +1,9 @@
 import React        from 'react';
 import Axios        from 'axios';
-import RegisterForm from './RegisterForm';
+import { withRouter } from 'react-router-dom';
 
 import Auth from '../../lib/Auth';
+import RegisterForm from './RegisterForm';
 
 class Register extends React.Component {
   state = {
@@ -27,12 +28,13 @@ class Register extends React.Component {
       .post('/api/register', this.state.user)
       .then(res => {
         Auth.setToken(res.data.token);
-        this.props.history.push('/');
+        this.props.history.push('/groups');
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    console.log(this.props);
     return (
       <RegisterForm
         user={this.state.user}
@@ -44,4 +46,4 @@ class Register extends React.Component {
 
 }
 
-export default Register;
+export default withRouter(Register);

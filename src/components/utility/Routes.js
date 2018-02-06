@@ -16,8 +16,8 @@ import PredictionsNew from '../moments/PredictionsNew';
 const Routes = () => {
   return(
     <Switch>
+      <Route exact path="/register" component={HomeRegister} />
       <Route exact path="/" component={Home} />
-      <Route path="/register" component={HomeRegister} />
       <Route exact path="/groups/:id/moments/:momentId/bet" component={PredictionsNew} />
       <Route exact path="/groups/:id/moments/new" component={MomentsNew} />
       <Route exact path="/groups/:id/moments/:momentId" component={MomentShow} />

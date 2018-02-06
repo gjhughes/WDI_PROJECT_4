@@ -30,6 +30,7 @@ class Login extends React.Component {
   }
 
   render() {
+    console.log(this.props.history);
     return(
       <LoginForm
         user={this.state.user}

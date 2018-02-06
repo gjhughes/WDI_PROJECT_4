@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Register from '../auth/Register';
 import Logo from '../utility/Logo';
@@ -12,4 +13,4 @@ const HomeRegister = () => {
   );
 };
 
-export default HomeRegister;
+export default withRouter(HomeRegister);

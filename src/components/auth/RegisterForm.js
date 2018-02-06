@@ -1,6 +1,7 @@
 import React from 'react';
 
 const RegisterForm = ({ handleSubmit, handleChange, user }) => {
+  console.log(user);
   return(
     <div className='section'>
       <div className='columns is-centered'>
