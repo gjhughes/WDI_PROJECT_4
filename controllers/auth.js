@@ -1,18 +1,18 @@
-const jwt = require('jsonwebtoken');
-const { secret } = require('../config/environment');
-const User = require('../models/user');
+const jwt = require("jsonwebtoken");
+const { secret } = require("../config/environment");
+const User = require("../models/user");
 
 function register(req, res, next) {
   User.create(req.body)
     .then(user => {
       const token = jwt.sign(
-        {userId: user.id, username: user.username},
+        { userId: user.id, username: user.username },
         secret,
-        {expiresIn: '1hr'}
+        { expiresIn: "1hr" }
       );
 
       return res.status(201).json({
-        message: 'Thank you for registering.',
+        message: "Thank you for registering.",
         token,
         user
       });
@@ -28,17 +28,17 @@ function login(req, res, next) {
     .then(user => {
       if (!user || !user.validatePassword(req.body.password)) {
         res.status(401).json({
-          message: 'Bad Request.'
+          message: "Bad Request."
         });
       }
       const token = jwt.sign(
-        {userId: user.id, username: user.username},
+        { userId: user.id, username: user.username },
         secret,
-        {expiresIn: '1hr'}
+        { expiresIn: "1hr" }
       );
 
       return res.status(200).json({
-        message: 'Welcome back.',
+        message: "Welcome back.",
         token,
         user
       });

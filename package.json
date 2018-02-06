@@ -8,11 +8,16 @@
     "start": "yarn build && node index",
     "start:client": "webpack-dev-server",
     "start:server": "nodemon",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "seed": "node db/seeds",
+    "test:client": "node_modules/.bin/_mocha test/client/helper \"test/client/**/*_test.js\"",
+    "test:server": "node_modules/.bin/_mocha \"test/api/**/*_test.js\"",
+    "test": "yarn test:server && yarn test:client"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.1",
     "cron": "^1.3.0",
     "express": "^4.15.4",

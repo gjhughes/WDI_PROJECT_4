@@ -10,7 +10,6 @@ function createCron(endTime, groupId, momentId) {
         uri: 'https://api.coindesk.com/v1/bpi/currentprice.json',
         json: true
       }).then(response => {
-
         const bpi = response[Object.keys(response)[3]];
         const gbp = bpi[Object.keys(bpi)[1]];
         const currentPrice = gbp[Object.keys(gbp)[4]];
@@ -21,7 +20,6 @@ function createCron(endTime, groupId, momentId) {
             const moment = group.moments.id(momentId);
 
             moment.endPrice = currentPrice;
-
             moment.bets
               .sort(
                 (a, b) =>
@@ -34,7 +32,6 @@ function createCron(endTime, groupId, momentId) {
                 );
                 user.points += i * 5;
               });
-
             return group.save();
           });
       });
